@@ -4,10 +4,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CV de Paul</title>
 <script>
-  // Portero de CV Vivo: recibe ?v=<token> y lleva a la página de Apps Script.
-  // Única línea a cambiar si cambia la implementación de Apps Script:
-  var APP = 'https://script.google.com/macros/s/AKfycbxIdeOw-m_iH83POlNozkcVlxdLmralSG33ZJVs29NKVxqXtJltRhpVppfhZ2e3-PQTcg/exec';
+  // Portero de CV Vivo: recibe ?v=<código> y lleva a la página de Apps Script.
+  // La URL de Apps Script vive en app.txt: si cambia la implementación, se cambia solo ese archivo.
   var v = new URLSearchParams(location.search).get('v') || '';
-  if (/^v-[a-z0-9-]{4,40}$/.test(v)) location.replace(APP + '?v=' + v);
-  else document.write('<p style="font-family:sans-serif;padding:40px">Esta versión no existe.</p>');
+  function no() { document.body.innerHTML = '<p style="font-family:sans-serif;padding:40px">Esta versión no existe.</p>'; }
+  if (!/^v-[a-z0-9-]{4,40}$/.test(v)) addEventListener('DOMContentLoaded', no);
+  else fetch('app.txt', { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (u) {
+    u = u.trim();
+    if (/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(u)) location.replace(u + '?v=' + v); else no();
+  }).catch(no);
 </script>
+<body></body>
