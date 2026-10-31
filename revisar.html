@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>CV Vivo · Revisión</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--bg:#f5f5f3;--surface:#fff;--ink:#1a1a1a;--muted:#5f5f5c;--line:#dcdcd8;--soft:#ebebe7;--ok:#1d7a4a;--warn:#9a6a00;--bad:#a63a2b;
+  --f-d:"Bricolage Grotesque",system-ui,sans-serif;--f-b:"Source Sans 3",system-ui,sans-serif;--f-m:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121212;--surface:#1b1b1b;--ink:#f0eee9;--muted:#a6a39d;--line:#2f2f2d;--soft:#2a2a28;--ok:#6fd39b;--warn:#e2b54a;--bad:#f0897a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121212;--surface:#1b1b1b;--ink:#f0eee9;--muted:#a6a39d;--line:#2f2f2d;--soft:#2a2a28;--ok:#6fd39b;--warn:#e2b54a;--bad:#f0897a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--f-b);padding:0 16px 64px}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-d);margin:0;line-height:1.2}
+.lbl{font-family:var(--f-m);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:20px}
+.top b{font-family:var(--f-d);font-size:17px}
+.top button{background:none;border:0;color:var(--ink);font:600 15px var(--f-b);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.grp{margin:20px 0 8px}
+.card{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:8px;color:var(--ink);cursor:pointer;font:inherit}
+.card .r{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.card h3{font-size:17px}
+.pill{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--soft)}
+.pill.act{background:var(--ink);color:var(--bg)}
+.muted{color:var(--muted)}
+.head h1{font-size:clamp(24px,5vw,32px)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.links a{font-size:14.5px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;text-decoration:none;background:var(--surface)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:18px}
+.decide{border:2px solid var(--ink)}
+.decide h2{font-size:21px}
+textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:inherit;background:var(--bg);color:var(--ink);resize:vertical}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:700 16px var(--f-b);padding:12px 20px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.del{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:wait}
+.msg{margin-top:12px;font-weight:600}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.sec{margin-top:26px}
+.sec>h2{font-size:19px;margin-bottom:10px}
+.hilo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hilo div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.hilo p{margin:4px 0 0}
+.esc{border-top:1px solid var(--line);padding:12px 0;display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px}
+.esc:first-of-type{border-top:0}
+.esc .t{font-family:var(--f-m);font-size:12.5px;color:var(--muted)}
+.esc q{display:block;font-size:16.5px}
+.esc small{color:var(--muted)}
+.gate{font-weight:700;margin-bottom:6px}
+.gate.ok{color:var(--ok)}.gate.bad{color:var(--bad)}
+.pyr .t{font-family:var(--f-d);font-size:18px;font-weight:700}
+.pyr .args{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+.pyr ul{margin:4px 0 0;padding-left:18px}
+.carta{white-space:pre-wrap;font-size:15.5px;margin:0}
+.hist div{border-top:1px solid var(--line);padding:8px 0;font-size:15px}
+.sig{display:flex;flex-wrap:wrap;gap:18px}
+.sig b{display:block;font-family:var(--f-d);font-size:24px}
+.estado{padding:60px 0;text-align:center;color:var(--muted)}
+@media (max-width:600px){.hilo,.pyr .args{grid-template-columns:minmax(0,1fr)}.esc{grid-template-columns:minmax(0,1fr);gap:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><b>CV Vivo · Revisión</b><button type="button" id="volver" hidden>← Todas</button></div>
+  <div id="app"><p class="estado">Cargando…</p></div>
+</div>
+<script>
+(function () {
+  const $ = s => document.querySelector(s);
+  const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const app = $('#app');
+  const hp = () => new URLSearchParams(location.hash.slice(1));
+  const K = hp().get('k') || '';
+  let APP = null;
+  const estado = t => { app.innerHTML = ''; app.appendChild(el('p', 'estado', t)); };
+  if (!/^[a-f0-9]{40,80}$/.test(K)) { estado('Este link no es válido. Ábrelo desde el botón "Revisar" de Telegram.'); return; }
+
+  function api(accion, v, args) {
+    return fetch(APP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ accion, v: v || '', args: args || [], k: K }) })
+      .then(r => r.json()).then(j => { if (!j.ok) throw new Error(j.error || 'Error'); return j.r; });
+  }
+  const ir = v => { location.hash = 'k=' + K + (v ? '&v=' + v : ''); };
+  $('#volver').onclick = () => ir('');
+  addEventListener('hashchange', mostrar);
+
+  fetch('app.txt', { cache: 'no-store' }).then(r => r.text()).then(u => {
+    APP = u.trim().replace(/\/macros\/u\/\d+\//, '/macros/'); mostrar();
+  }).catch(() => estado('No pude conectar con Apps Script.'));
+
+  function mostrar() {
+    const v = hp().get('v');
+    $('#volver').hidden = !v;
+    estado('Cargando…');
+    (v ? api('panel_detalle', v).then(detalle) : api('panel_lista').then(lista)).catch(e => estado(e.message === 'Llave inválida.' ? 'La llave del panel cambió. Usa el último link de Telegram.' : 'No pude cargar: ' + e.message));
+  }
+
+  // ---------- lista ----------
+  function lista(items) {
+    app.innerHTML = '';
+    const grupos = [['Esperan tu revisión', i => ['guion', 'audio', 'envio', 'error'].includes(i.etapa)], ['En proceso', i => i.etapa === 'proceso'],
+      ['Enviadas', i => i.etapa === 'seguimiento'], ['Cerradas', i => i.etapa === 'cerrada']];
+    let alguna = false;
+    grupos.forEach(([t, f]) => {
+      const xs = items.filter(f); if (!xs.length) return; alguna = true;
+      app.appendChild(el('div', 'lbl grp', t + ' · ' + xs.length));
+      xs.forEach(i => {
+        const c = el('button', 'card'); c.type = 'button'; c.onclick = () => ir(i.token);
+        const r = el('div', 'r'); r.append(el('h3', null, i.empresa + ' · ' + i.cargo), el('span', 'pill' + (t === 'Esperan tu revisión' ? ' act' : ''), i.estado));
+        c.append(r, el('div', 'muted', [i.fecha, i.score ? 'score ' + i.score : '', i.tramo].filter(Boolean).join(' · ')));
+        app.appendChild(c);
+      });
+    });
+    if (!alguna) estado('No hay postulaciones todavía.');
+  }
+
+  // ---------- detalle ----------
+  const NOMBRE = { aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
+  const AYUDA = { guion: 'Lee el guion abajo. Si apruebas, se genera el audio con tu voz. Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
+    audio: 'Escucha el audio. Si apruebas, se genera el video (cobra un render).', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
+    error: 'Algo falló. Lee la nota y reintenta.', proceso: 'Está trabajando; te aviso por Telegram cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
+
+  function detalle(d) {
+    const f = d.fila, et = d.etapa;
+    app.innerHTML = '';
+    const h = el('div', 'head');
+    h.append(el('div', 'lbl', [f.score ? 'score ' + f.score : '', f.tramo, f.token].filter(Boolean).join(' · ')), el('h1', null, f.empresa + ' · ' + f.cargo));
+    const st = el('p'); st.append(el('span', 'pill act', f.estado)); h.appendChild(st);
+    const L = el('div', 'links');
+    [['Vacante', f.link_vacante], ['Página del reclutador', f.link_reclutador], ['CV en PDF', f.cv_pdf], ['Audio', f.audio], ['Video', f.video_drive], ['Carpeta', f.carpeta]]
+      .forEach(([t, u]) => { if (u && /^https:\/\//.test(u)) { const a = el('a', null, t); a.href = u; a.target = '_blank'; a.rel = 'noopener'; L.appendChild(a); } });
+    h.appendChild(L); app.appendChild(h);
+
+    // decisión
+    const box = el('div', 'box' + (et.acciones.length ? ' decide' : ''));
+    box.append(el('h2', null, et.titulo), el('p', 'muted', AYUDA[et.etapa] || ''));
+    if (f.notas && et.etapa === 'error') box.appendChild(el('p', 'msg bad', f.notas));
+    const ta = el('textarea'); ta.placeholder = et.etapa === 'guion' ? 'Qué cambiarías (ej.: la escena 2 suena forzada; nombra el desafío de 26 edificios con otra frase)' : 'Comentario (opcional)';
+    box.appendChild(ta);
+    const btns = el('div', 'btns'), msg = el('p', 'msg');
+    const accion = a => {
+      if (a === 'cambios' && !ta.value.trim()) { msg.className = 'msg bad'; msg.textContent = 'Escribe qué cambiarías.'; ta.focus(); return; }
+      if (a === 'descartar' && !confirmar(btns, a)) return;
+      btns.querySelectorAll('button').forEach(b => b.disabled = true);
+      msg.className = 'msg'; msg.textContent = a === 'cambios' ? 'Claude está reescribiendo el guion… (hasta 1 minuto)' : a === 'aprobar' ? 'Procesando… (puede tardar hasta 1 minuto)' : 'Guardando…';
+      api('panel_decidir', f.token, [a, ta.value]).then(r => { detalle(r.detalle); const m = $('.decide .msg') || $('.box .msg'); if (m) { m.className = 'msg ok'; m.textContent = r.mensaje; } })
+        .catch(e => { msg.className = 'msg bad'; msg.textContent = e.message; btns.querySelectorAll('button').forEach(b => b.disabled = false); });
+    };
+    et.acciones.forEach((a, i) => { const b = el('button', 'btn' + (i === 0 ? ' pri' : ''), NOMBRE[a] || a); b.type = 'button'; b.onclick = () => accion(a); btns.appendChild(b); });
+    const nota = el('button', 'btn', 'Guardar comentario'); nota.type = 'button'; nota.onclick = () => { if (ta.value.trim()) accion('nota'); }; btns.appendChild(nota);
+    if (et.etapa !== 'cerrada') { const del = el('button', 'btn del', 'Descartar'); del.type = 'button'; del.dataset.a = 'descartar'; del.onclick = () => accion('descartar'); btns.appendChild(del); }
+    box.append(btns, msg); app.appendChild(box);
+
+    // señales (cuando ya se envió)
+    if (et.etapa === 'seguimiento') {
+      const s = sec('Señales del reclutador'), g = el('div', 'sig');
+      [['Aperturas', f.aperturas], ['Preguntas', f.preguntas], ['Briefs', f.briefs]].forEach(([t, n]) => { const x = el('div'); x.append(el('b', null, String(n || 0)), el('span', 'muted', t)); g.appendChild(x); });
+      s.appendChild(g); if (f.llamada) s.appendChild(el('p', null, 'Llamada: ' + f.llamada));
+    }
+    // hilo
+    if (d.hilo) {
+      const s = sec('El hilo'), g = el('div', 'hilo');
+      [['Tensión', d.hilo.tension], ['Transformación', d.hilo.transformacion], ['Prueba', d.hilo.prueba], ['Puente', d.hilo.puente]]
+        .forEach(([t, x]) => { if (x) { const c = el('div'); c.append(el('div', 'lbl', t), el('p', null, x)); g.appendChild(c); } });
+      s.appendChild(g);
+    }
+    // guion
+    if (d.escenas && d.escenas.length) {
+      const s = sec('Guion del video');
+      if (d.compuerta) s.appendChild(el('div', 'gate ' + (d.compuerta.ok ? 'ok' : 'bad'), d.compuerta.ok ? 'Pasa la compuerta · ' + d.compuerta.palabras + ' palabras · ~' + d.compuerta.duracion_s + ' s' : 'No pasa la compuerta: ' + (d.compuerta.errores || []).join(' ')));
+      const b = el('div', 'box');
+      d.escenas.forEach(e => { const r = el('div', 'esc'); r.append(el('div', 't', fmt(e.inicio_s) + '–' + fmt(e.fin_s) + '\nEscena ' + (e.n || ''))); const c = el('div'); c.append(el('q', null, e.locucion), el('small', null, 'En pantalla: ' + (e.en_pantalla || '') + (e.fuente ? ' · fuente: ' + [].concat(e.fuente).join(', ') : ''))); r.appendChild(c); b.appendChild(r); });
+      s.appendChild(b);
+    }
+    // brief
+    if (d.brief_rol) {
+      const s = sec('Brief del rol'), b = el('div', 'box pyr'), p = d.brief_rol;
+      b.append(el('div', 't', p.t), el('p', 'muted', p.base));
+      const a = el('div', 'args'); (p.args || []).forEach(([t, xs]) => { const c = el('div'); c.appendChild(el('b', null, t)); const ul = el('ul'); (xs || []).forEach(x => ul.appendChild(el('li', null, x))); c.appendChild(ul); a.appendChild(c); });
+      b.append(a, el('p', null, p.pt)); s.appendChild(b);
+    }
+    // carta
+    if (d.carta) { const s = sec('Carta'); const b = el('div', 'box'); b.appendChild(el('p', 'carta', d.carta)); s.appendChild(b); }
+    // historial
+    if (d.revisiones && d.revisiones.length) {
+      const s = sec('Tus revisiones'), b = el('div', 'hist');
+      d.revisiones.slice().reverse().forEach(r => b.appendChild(el('div', null, r.fecha + ' · ' + r.etapa + ' · ' + (NOMBRE[r.decision] || r.decision) + (r.comentario ? ': ' + r.comentario : ''))));
+      s.appendChild(b);
+    }
+  }
+  function sec(t) { const s = el('section', 'sec'); s.appendChild(el('h2', null, t)); app.appendChild(s); return s; }
+  function fmt(s) { s = Number(s || 0); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  function confirmar(btns, a) {
+    const b = btns.querySelector('[data-a="' + a + '"]');
+    if (b.dataset.seguro) return true;
+    b.dataset.seguro = '1'; b.textContent = '¿Seguro? Toca de nuevo'; setTimeout(() => { delete b.dataset.seguro; b.textContent = 'Descartar'; }, 4000); return false;
+  }
+})();
+</script>
+</body>
+</html>
