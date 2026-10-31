@@ -10,7 +10,7 @@
   function no() { document.body.innerHTML = '<p style="font-family:sans-serif;padding:40px">Esta versión no existe.</p>'; }
   if (!/^v-[a-z0-9-]{4,40}$/.test(v)) addEventListener('DOMContentLoaded', no);
   else fetch('app.txt', { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (u) {
-    u = u.trim();
+    u = u.trim().replace(/\/macros\/u\/\d+\//, '/macros/');   // quita /u/3/ si se pega con él
     if (/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(u)) location.replace(u + '?v=' + v); else no();
   }).catch(no);
 </script>
