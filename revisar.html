@@ -61,6 +61,11 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
 .sig{display:flex;flex-wrap:wrap;gap:18px}
 .sig b{display:block;font-family:var(--f-d);font-size:24px}
 .estado{padding:60px 0;text-align:center;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin:8px 0 10px;flex-wrap:wrap}
+.tab{font:700 15px var(--f-b);padding:9px 16px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.prev{width:100%;height:78vh;border:1px solid var(--line);border-radius:10px;background:#fff;display:block}
+.prev-open{font-size:14px;font-weight:600;color:var(--ink);margin-top:6px;display:inline-block}
 @media (max-width:600px){.hilo,.pyr .args{grid-template-columns:minmax(0,1fr)}.esc{grid-template-columns:minmax(0,1fr);gap:4px}}
 </style>
 </head>
@@ -135,11 +140,26 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
       .forEach(([t, u]) => { if (u && /^https:\/\//.test(u)) { const a = el('a', null, t); a.href = u; a.target = '_blank'; a.rel = 'noopener'; L.appendChild(a); } });
     h.appendChild(L); app.appendChild(h);
 
+    // borrador casi final: la página del reclutador, el CV y la carta tal como saldrán
+    const bt = el('div', 'tabs'), marco = el('div');
+    const vistas = [['Página del reclutador', 'url', f.link_reclutador ? f.link_reclutador + '&preview=1' : ''], ['CV', 'html', d.cv_html], ['Carta', 'html', d.carta_html]].filter(x => x[2]);
+    const ver = i => {
+      bt.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+      marco.innerHTML = ''; const [t, tipo, val] = vistas[i]; const fr = el('iframe', 'prev'); fr.title = t;
+      if (tipo === 'url') { fr.src = val; const a = el('a', 'prev-open', 'Abrir en pestaña nueva →'); a.href = val; a.target = '_blank'; a.rel = 'noopener'; marco.append(fr, a); }
+      else { fr.srcdoc = '<div style="max-width:760px;margin:24px auto;padding:0 20px">' + val + '</div>'; marco.appendChild(fr); }
+    };
+    if (vistas.length) {
+      const lb = el('div', 'lbl', 'Borrador · así lo verá ' + f.empresa); lb.style.marginTop = '22px'; app.appendChild(lb);
+      vistas.forEach((x, i) => { const b = el('button', 'tab', x[0]); b.type = 'button'; b.onclick = () => ver(i); bt.appendChild(b); });
+      app.append(bt, marco); ver(0);
+    }
+
     // decisión
     const box = el('div', 'box' + (et.acciones.length ? ' decide' : ''));
     box.append(el('h2', null, et.titulo), el('p', 'muted', AYUDA[et.etapa] || ''));
     if (f.notas && et.etapa === 'error') box.appendChild(el('p', 'msg bad', f.notas));
-    const ta = el('textarea'); ta.placeholder = et.etapa === 'guion' ? 'Qué cambiarías (ej.: la escena 2 suena forzada; nombra el desafío de 26 edificios con otra frase)' : 'Comentario (opcional)';
+    const ta = el('textarea'); ta.placeholder = 'Tu feedback sobre el borrador: página, CV, carta o guion (ej.: en el CV sube Smart Campaign; la escena 2 suena forzada)';
     box.appendChild(ta);
     const btns = el('div', 'btns'), msg = el('p', 'msg');
     const accion = a => {

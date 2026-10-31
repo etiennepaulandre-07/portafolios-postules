@@ -29,8 +29,9 @@ window.CVV_LOADER = true;   // la página espera a que lleguen los datos
     datos.then(function (j) {
       if (!j.ok) { aviso('Esta versión no existe.'); return; }
       window.V = j.r.V; window.CVV_DATA = j.r.data;
+      var vistaPrevia = new URLSearchParams(location.search).get('preview') === '1';   // Paul revisando: no cuenta aperturas ni clics
       window.CVV = {
-        evento: function (t, p) { api('evento', [t, p || '']).catch(function () {}); },
+        evento: function (t, p) { if (!vistaPrevia) api('evento', [t, p || '']).catch(function () {}); },
         preguntar: function (q) { return api('preguntar', [q]); },
         brief: function (b) { return api('brief', [b]); },
         horarios: function () { return api('horarios', []); },
