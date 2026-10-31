@@ -119,7 +119,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
   }
 
   // ---------- detalle ----------
-  const NOMBRE = { aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
+  const NOMBRE = { carpeta: 'Armar carpeta para enviar', aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
   const AYUDA = { guion: 'Lee el guion abajo. Si apruebas, se genera el audio con tu voz. Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
     audio: 'Escucha el audio. Si apruebas, se genera el video (cobra un render).', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
     error: 'Algo falló. Lee la nota y reintenta.', proceso: 'Está trabajando; te aviso por Telegram cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
@@ -151,6 +151,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
         .catch(e => { msg.className = 'msg bad'; msg.textContent = e.message; btns.querySelectorAll('button').forEach(b => b.disabled = false); });
     };
     et.acciones.forEach((a, i) => { const b = el('button', 'btn' + (i === 0 ? ' pri' : ''), NOMBRE[a] || a); b.type = 'button'; b.onclick = () => accion(a); btns.appendChild(b); });
+    if (et.etapa !== 'cerrada') { const cp = el('button', 'btn', 'Armar carpeta para enviar'); cp.type = 'button'; cp.onclick = () => accion('carpeta'); btns.appendChild(cp); }
     const nota = el('button', 'btn', 'Guardar comentario'); nota.type = 'button'; nota.onclick = () => { if (ta.value.trim()) accion('nota'); }; btns.appendChild(nota);
     if (et.etapa !== 'cerrada') { const del = el('button', 'btn del', 'Descartar'); del.type = 'button'; del.dataset.a = 'descartar'; del.onclick = () => accion('descartar'); btns.appendChild(del); }
     box.append(btns, msg); app.appendChild(box);
