@@ -78,7 +78,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
   const K = hp().get('k') || '';
   let APP = null;
   const estado = t => { app.innerHTML = ''; app.appendChild(el('p', 'estado', t)); };
-  if (!/^[a-f0-9]{40,80}$/.test(K)) { estado('Este link no es válido. Ábrelo desde el botón "Revisar" de Telegram.'); return; }
+  if (!/^[a-f0-9]{40,80}$/.test(K)) { estado('Este link no es válido. Ábrelo desde el botón "Revisar" de tus avisos.'); return; }
 
   function api(accion, v, args) {
     return fetch(APP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ accion, v: v || '', args: args || [], k: K }) })
@@ -96,7 +96,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
     const v = hp().get('v');
     $('#volver').hidden = !v;
     estado('Cargando…');
-    (v ? api('panel_detalle', v).then(detalle) : api('panel_lista').then(lista)).catch(e => estado(e.message === 'Llave inválida.' ? 'La llave del panel cambió. Usa el último link de Telegram.' : 'No pude cargar: ' + e.message));
+    (v ? api('panel_detalle', v).then(detalle) : api('panel_lista').then(lista)).catch(e => estado(e.message === 'Llave inválida.' ? 'La llave del panel cambió. Usa el último link de tus avisos.' : 'No pude cargar: ' + e.message));
   }
 
   // ---------- lista ----------
@@ -122,7 +122,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
   const NOMBRE = { carpeta: 'Armar carpeta para enviar', aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
   const AYUDA = { guion: 'Lee el guion abajo. Si apruebas, se genera el audio con tu voz. Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
     audio: 'Escucha el audio. Si apruebas, se genera el video (cobra un render).', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
-    error: 'Algo falló. Lee la nota y reintenta.', proceso: 'Está trabajando; te aviso por Telegram cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
+    error: 'Algo falló. Lee la nota y reintenta.', proceso: 'Está trabajando; te aviso cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
 
   function detalle(d) {
     const f = d.fila, et = d.etapa;
