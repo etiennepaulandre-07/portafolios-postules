@@ -584,30 +584,43 @@ window.CVV_INIT = function(){
 
   // ---------- video: guion como vista previa ----------
   const ESC = ((V.guion || {}).escenas) || [];
-  $('#vidTit').textContent = 'Paul en ' + (ESC.length ? ESC[ESC.length - 1].fin_s : 45) + ' segundos, para ' + (V.empresa || 'tu equipo');
-  $('#vidLbl').textContent = ESC.length + ' escenas';
-  const TOTAL = ESC.length ? ESC[ESC.length - 1].fin_s : 0, fmt = s => '0:' + String(Math.floor(s)).padStart(2, '0');
+  const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  let TOTAL = ESC.length ? ESC[ESC.length - 1].fin_s : 0;
+  function titulo() { const T = Math.round(TOTAL); $('#vidTit').textContent = 'Paul en ' + (T >= 59 && T <= 61 ? '1 minuto' : (T || 45) + ' segundos') + ', para ' + (V.empresa || 'tu equipo'); }
+  titulo(); $('#vidLbl').textContent = ESC.length + ' escenas';
   const segs = $('#segs'), sb = $('#sb');
   ESC.forEach((sc, i) => {
     const d = el('div'); d.style.flex = String(sc.fin_s - sc.inicio_s); d.appendChild(el('i')); d.onclick = () => seek(sc.inicio_s); segs.appendChild(d);
     const li = el('li'), b = el('button'); b.type = 'button';
-    const tm = el('span', 'tm', fmt(sc.inicio_s) + '–' + fmt(sc.fin_s)); tm.appendChild(el('br')); tm.append('Escena ' + (i + 1));
+    const tm = el('span', 'tm'); tm.append(el('span', 'rng', fmt(sc.inicio_s) + '–' + fmt(sc.fin_s)), el('br'), 'Escena ' + (i + 1));
     const tx = el('span'); tx.append(el('span', 'vo', '“' + sc.locucion + '”'), el('span', 'vis', sc.en_pantalla || ''));
-    b.append(tm, tx); b.onclick = () => { seek(sc.inicio_s); if (!playing) play(); }; li.appendChild(b); sb.appendChild(li);
+    b.append(tm, tx); b.onclick = () => { seek(sc.inicio_s); if (VID || !playing) play(); }; li.appendChild(b); sb.appendChild(li);
   });
-  let tt = 0, playing = false, last = 0, raf = 0, cur = -1;
+  let tt = 0, playing = false, last = 0, raf = 0, cur = -1, VID = null;
   function render() {
     if (!ESC.length) return;
     let i = ESC.findIndex(s => tt >= s.inicio_s && tt < s.fin_s); if (i < 0) i = ESC.length - 1;
-    if (i !== cur) { cur = i; $('#ovE').textContent = 'Escena ' + (i + 1); $('#ovB').textContent = ESC[i].en_pantalla || ''; $('#cap').textContent = ESC[i].locucion;
+    if (i !== cur) { cur = i;
+      if ($('#ovE')) { $('#ovE').textContent = 'Escena ' + (i + 1); $('#ovB').textContent = ESC[i].en_pantalla || ''; $('#cap').textContent = ESC[i].locucion; }
       sb.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-current', String(k === i))); }
     [...segs.children].forEach((d, k) => { const s = ESC[k]; d.firstChild.style.width = Math.min(100, Math.max(0, (tt - s.inicio_s) / (s.fin_s - s.inicio_s) * 100)) + '%'; });
-    $('#tm').textContent = fmt(Math.min(tt, TOTAL)) + ' / ' + fmt(TOTAL);
+    if ($('#tm')) $('#tm').textContent = fmt(Math.min(tt, TOTAL)) + ' / ' + fmt(TOTAL);
   }
   function tick(n) { if (!playing) return; tt += (n - last) / 1000; last = n; if (tt >= TOTAL) { tt = TOTAL; pause(); render(); return; } render(); raf = requestAnimationFrame(tick); }
-  function play() { if (tt >= TOTAL) tt = 0; playing = true; last = performance.now(); $('#playBtn').textContent = 'Pausar'; raf = requestAnimationFrame(tick); }
-  function pause() { playing = false; cancelAnimationFrame(raf); $('#playBtn').textContent = tt >= TOTAL ? 'Ver de nuevo' : 'Reproducir'; }
-  function seek(s) { tt = s; cur = -1; render(); }
+  function play() { if (VID) { const p = VID.play(); if (p && p.catch) p.catch(() => {}); return; } if (tt >= TOTAL) tt = 0; playing = true; last = performance.now(); $('#playBtn').textContent = 'Pausar'; raf = requestAnimationFrame(tick); }
+  function pause() { if (VID) { VID.pause(); return; } playing = false; cancelAnimationFrame(raf); $('#playBtn').textContent = tt >= TOTAL ? 'Ver de nuevo' : 'Reproducir'; }
+  function seek(s) { if (VID) { VID.currentTime = s + 0.05; } tt = s; cur = -1; render(); }
+  // Conecta el guion con el video real: cada escena se ilumina mientras suena y al tocarla el video salta ahí
+  function conectarVideo(vid, tiempos) {
+    VID = vid;
+    if (tiempos && tiempos.length === ESC.length) {
+      tiempos.forEach((x, i) => { ESC[i].inicio_s = x.a; ESC[i].fin_s = x.b; });
+      TOTAL = tiempos[tiempos.length - 1].b; titulo();
+      sb.querySelectorAll('.rng').forEach((r, i) => { r.textContent = fmt(ESC[i].inicio_s) + '–' + fmt(ESC[i].fin_s); });
+    }
+    vid.addEventListener('timeupdate', () => { tt = vid.currentTime; render(); });
+    vid.addEventListener('seeked', () => { tt = vid.currentTime; cur = -1; render(); });
+  }
   $('#playBtn').onclick = () => playing ? pause() : play();
   render();
 
@@ -661,6 +674,8 @@ window.CVV_INIT = function(){
     vid.style.cssText = 'width:100%;max-width:100%;aspect-ratio:16/9;background:#000;display:block;border-radius:8px';
     vid.addEventListener('play', () => { if (window.CVV) CVV.evento('video_play'); }, { once: true });
     pl.appendChild(vid);
+    conectarVideo(vid, null);
+    fetch(V.video_url.replace(/\.mp4(\?.*)?$/, '.json')).then(r => r.ok ? r.json() : null).then(t => { if (t && t.escenas) conectarVideo(vid, t.escenas); }).catch(() => {});
     $('#vnote').textContent = 'Video armado con IA a partir de un guion que Paul escribió y aprobó. La voz es la suya.';
   }
 
