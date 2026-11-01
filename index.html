@@ -15,15 +15,16 @@ window.CVV_LOADER = true;   // la página espera a que lleguen los datos
   function listo() { var c = document.getElementById('cvvCarga'); if (c) c.remove(); }
   if (!/^v-[a-z0-9-]{4,40}$/.test(v)) { addEventListener('DOMContentLoaded', function () { aviso('Esta versión no existe.'); }); return; }
   var APP;
+  var pk = (new URLSearchParams(location.hash.slice(1))).get('pk') || '';   // llave de vista previa: solo viene desde tu panel
   function api(accion, args) {
-    return fetch(APP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ accion: accion, v: v, args: args || [] }) })
+    return fetch(APP, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ accion: accion, v: v, args: args || [], k: pk }) })
       .then(function (r) { return r.json(); })
       .then(function (j) { if (!j.ok) throw new Error(j.error || 'Error'); return j.r; });
   }
   var datos = fetch('app.txt', { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (u) {
     APP = u.trim().replace(/\/macros\/u\/\d+\//, '/macros/');
     if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(APP)) throw new Error('app');
-    return fetch(APP + '?api=1&v=' + encodeURIComponent(v)).then(function (r) { return r.json(); });
+    return api('version', []).then(function (r) { return { ok: true, r: r }; }, function () { return { ok: false }; });
   });
   addEventListener('DOMContentLoaded', function () {
     datos.then(function (j) {

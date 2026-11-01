@@ -142,7 +142,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
 
     // borrador casi final: la página del reclutador, el CV y la carta tal como saldrán
     const bt = el('div', 'tabs'), marco = el('div');
-    const vistas = [['Página del reclutador', 'url', f.link_reclutador ? f.link_reclutador + '&preview=1' : ''], ['CV', 'html', d.cv_html], ['Carta', 'html', d.carta_html]].filter(x => x[2]);
+    const vistas = [['Página del reclutador', 'url', f.link_reclutador ? f.link_reclutador + '&preview=1#pk=' + K : ''], ['CV', 'html', d.cv_html], ['Carta', 'html', d.carta_html]].filter(x => x[2]);
     const ver = i => {
       bt.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
       marco.innerHTML = ''; const [t, tipo, val] = vistas[i]; const fr = el('iframe', 'prev'); fr.title = t;
