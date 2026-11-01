@@ -107,7 +107,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
   // ---------- lista ----------
   function lista(items) {
     app.innerHTML = '';
-    const grupos = [['Esperan tu revisión', i => ['guion', 'audio', 'envio', 'error'].includes(i.etapa)], ['En proceso', i => i.etapa === 'proceso'],
+    const grupos = [['Esperan tu revisión', i => ['guion', 'audio', 'envio', 'error', 'montaje'].includes(i.etapa)], ['En proceso', i => i.etapa === 'proceso'],
       ['Enviadas', i => i.etapa === 'seguimiento'], ['Cerradas', i => i.etapa === 'cerrada']];
     let alguna = false;
     grupos.forEach(([t, f]) => {
@@ -127,7 +127,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
   const NOMBRE = { carpeta: 'Generar PDF y enviármelos', aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
   const AYUDA = { guion: 'Lee el guion abajo. Si apruebas, se genera el audio con tu voz (o, mientras no esté ElevenLabs, te llegan el CV y la carta en PDF por email). Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
     audio: 'Escucha el audio. Si apruebas, se genera el video (cobra un render).', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
-    error: 'Algo falló. Lee la nota y reintenta.', proceso: 'Está trabajando; te aviso cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
+    error: 'Algo falló. Lee la nota y reintenta.', montaje: 'Tus clips de Higgsfield están en la carpeta clips. Pásaselos a Claude para el montaje; el video final se publica solo al dejarlo como video-final.mp4.', proceso: 'Está trabajando; te aviso cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
 
   function detalle(d) {
     const f = d.fila, et = d.etapa;
