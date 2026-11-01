@@ -205,7 +205,7 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
       b.append(a, el('p', null, p.pt)); s.appendChild(b);
     }
     // carta
-    if (d.carta) { const s = sec('Carta'); const b = el('div', 'box'); b.appendChild(el('p', 'carta', d.carta)); s.appendChild(b); }
+    if (d.carta && !d.carta_html) { const s = sec('Carta'); const b = el('div', 'box'); b.appendChild(el('p', 'carta', d.carta)); s.appendChild(b); }
     // historial
     if (d.revisiones && d.revisiones.length) {
       const s = sec('Tus revisiones'), b = el('div', 'hist');
