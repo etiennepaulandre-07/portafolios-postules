@@ -397,7 +397,7 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
               <span class="t" id="tm"></span>
             </div>
           </div>
-          <p class="vnote" id="vnote">Vista previa del guion aprobado. El video con la voz y el avatar de Paul se publica aquí cuando esté listo.</p>
+          <p class="vnote" id="vnote">Vista previa del guion aprobado. El video con la voz de Paul se publica aquí cuando esté listo.</p>
         </div>
         <ol class="sb" id="sb" aria-label="Guion por escenas"></ol>
       </div>
@@ -670,7 +670,7 @@ window.CVV_INIT = function(){
     if (CVV_DATA.youtube_id && !(window.V && V.video_url)) {
       const pl = document.querySelector('.player');
       pl.innerHTML = '<div style="position:relative;aspect-ratio:16/9;max-width:100%"><iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(CVV_DATA.youtube_id) + '?rel=0&modestbranding=1" title="Paul en video" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>';
-      $('#vnote').textContent = 'Video generado con IA: avatar y voz de Paul, a partir de un guion que él aprobó.';
+      $('#vnote').textContent = 'Video armado con IA a partir de un guion que Paul escribió y aprobó. La voz es la suya.';
     }
   }
 };
