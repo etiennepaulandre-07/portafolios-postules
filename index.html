@@ -340,6 +340,31 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
 .exp p{margin:3px 0 0;color:var(--muted)}
 @media (max-width:720px){.perfil{grid-template-columns:minmax(0,1fr)}.skills{grid-template-columns:minmax(0,1fr);gap:2px}.skills dd{margin-bottom:8px}.exp li{grid-template-columns:minmax(0,1fr);gap:2px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* esquema del sistema (al final): entrada → trigger → lectura → armado → aprobación → salida */
+.fx{container-type:inline-size;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.fx-intro{margin:0 0 18px;max-width:68ch;color:var(--muted)}
+.fx-intro b{color:var(--ink)}
+.fx-row{display:grid;grid-template-columns:1fr .8fr 1.15fr 1.25fr 1.15fr;gap:0;align-items:stretch}
+.fx-col{display:flex;flex-direction:column;gap:8px;padding:0 10px;position:relative;min-width:0}
+.fx-col+.fx-col{border-left:1px dashed var(--line)}
+.fx-n{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.fx-c{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg)}
+.fx-c b{display:block;font-family:var(--f-display);font-size:16px;line-height:1.2}
+.fx-c span{display:block;font-size:13.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+.fx-c.pill{margin-top:auto;margin-bottom:auto}
+.fx-c.hi{border:1.5px solid var(--ok);margin-top:auto;margin-bottom:auto}
+.fx-c.hi i{display:block;font-style:normal;color:var(--ok);font-size:13.5px;margin:2px 0 6px}
+.fx-out{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.fx-out .fx-c b{font-size:15px}
+.fx-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px 24px;margin-top:18px}
+.fx-foot p{margin:0;font-family:var(--f-display);font-size:22px;line-height:1.2;max-width:26ch}
+.fx-foot p em{font-style:normal;color:var(--ok)}
+.fx-k{display:flex;gap:26px}
+.fx-k div{font-size:13px;color:var(--muted);line-height:1.2}
+.fx-k strong{display:block;font-family:var(--f-display);font-size:30px;color:var(--ok);font-variant-numeric:tabular-nums}
+@container (max-width:860px){.fx-row{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.fx-col:nth-child(4){border-left:0;padding-left:0}.fx-col:nth-child(1){padding-left:0}.fx-out{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container (max-width:560px){.fx-row,.fx-out{grid-template-columns:minmax(0,1fr)}.fx-col,.fx-col:nth-child(n){padding:0;border-left:0}.fx-c.pill,.fx-c.hi{margin:0}}
 </style>
 
 <div class="wrap">
@@ -442,6 +467,36 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
           <div id="refsBox"><h3 class="label">Referencias</h3><div class="refs" id="refs"></div></div>
           <div id="expBox"><h3 class="label">Experiencia</h3><ol class="exp" id="exp"></ol></div>
         </section>
+        <section id="sistemaSec">
+          <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización · Apps Script</span></div>
+          <div class="fx">
+            <p class="fx-intro">Esta página es un ejemplo de cómo automatizo. Es mi proyecto en <b>Google Apps Script</b>, que integra <b>Gmail, Drive, Calendar, GitHub y la API de Claude</b> para que cada CV sea personalizado, muestre los casos de éxito que importan para el cargo, permita consultar los datos de cada punto y haga fácil agendar la siguiente conversación.</p>
+            <div class="fx-row">
+              <div class="fx-col"><div class="fx-n">01 Entrada</div>
+                <div class="fx-c"><b id="fxEmp">La vacante</b><span>Link de la oferta</span><span id="fxCargo"></span></div></div>
+              <div class="fx-col"><div class="fx-n">02 Trigger</div>
+                <div class="fx-c pill"><b>Apps Script</b><span>Drive · cada 10 min</span></div></div>
+              <div class="fx-col"><div class="fx-n">03 Lectura</div>
+                <div class="fx-c"><b>Requisitos</b><span>Qué pide el cargo</span></div>
+                <div class="fx-c"><b>Evidencia</b><span>Casos y cifras reales</span></div>
+                <div class="fx-c"><b>Guion</b><span>Video de 1 minuto</span></div></div>
+              <div class="fx-col"><div class="fx-n">04 Armado</div>
+                <div class="fx-c hi"><b>Claude</b><i>Agente de IA</i><span>Arma el CV, la carta, el guion y esta página usando solo evidencia real.</span></div></div>
+              <div class="fx-col"><div class="fx-n">05 Aprobación</div>
+                <div class="fx-c"><b>Panel + Gmail</b><span>Me llega un correo, reviso cada pieza y apruebo. Recién ahí se publica y se generan los PDF.</span></div></div>
+            </div>
+            <div class="fx-out" aria-label="Lo que sale">
+              <div class="fx-c"><b>CV y carta en PDF</b><span>Con QR a esta página</span></div>
+              <div class="fx-c"><b>Video con mi voz</b><span>ElevenLabs + montaje</span></div>
+              <div class="fx-c"><b>Chat con la evidencia</b><span>Pregunta por cualquier punto</span></div>
+              <div class="fx-c"><b>Agenda</b><span>Google Calendar + Meet</span></div>
+            </div>
+            <div class="fx-foot">
+              <p>Un link de vacante, <em>un CV hecho para el cargo.</em></p>
+              <div class="fx-k"><div><strong>7</strong>herramientas<br>integradas</div><div><strong>1</strong>aprobación<br>humana</div><div><strong>20</strong>min para<br>agendar</div></div>
+            </div>
+          </div>
+        </section>
         <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
       </main>
       <aside class="chat" aria-label="Chat con el CV">
@@ -465,6 +520,8 @@ window.CVV_INIT = function(){
   const CASO = Object.fromEntries((V.casos || []).map(c => [c.id, c]));
   const nombre = id => (CASO[id] && (CASO[id].empresa + ' · ' + CASO[id].titulo)) || id;
   const corto = id => (CASO[id] && CASO[id].empresa) || id;
+  if (V.empresa) { const fe = document.getElementById('fxEmp'); if (fe) fe.textContent = 'Vacante · ' + V.empresa; }
+  if (V.cargo) { const fc = document.getElementById('fxCargo'); if (fc) fc.textContent = V.cargo; }
   document.title = 'CV ' + (V.nombre_corto || V.nombre || 'Paul') + ' · ' + (V.cargo || '') + ' | ' + (V.empresa || '');
 
   // ---------- encabezado ----------
