@@ -468,32 +468,32 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
           <div id="expBox"><h3 class="label">Experiencia</h3><ol class="exp" id="exp"></ol></div>
         </section>
         <section id="sistemaSec">
-          <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización · Apps Script</span></div>
+          <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización</span></div>
           <div class="fx">
-            <p class="fx-intro">Esta página es un ejemplo de cómo automatizo. Es mi proyecto en <b>Google Apps Script</b>, que integra <b>Gmail, Drive, Calendar, GitHub y la API de Claude</b> para que cada CV sea personalizado, muestre los casos de éxito que importan para el cargo, permita consultar los datos de cada punto y haga fácil agendar la siguiente conversación.</p>
+            <p class="fx-intro">Esta página es un ejemplo de cómo automatizo: un sistema propio que conecta <b>correo, calendario, almacenamiento en la nube, un sitio web, síntesis de voz y un agente de IA</b> para que cada CV sea personalizado, muestre los casos de éxito que importan para el cargo, permita consultar los datos de cada punto y haga fácil agendar la siguiente conversación.</p>
             <div class="fx-row">
               <div class="fx-col"><div class="fx-n">01 Entrada</div>
                 <div class="fx-c"><b id="fxEmp">La vacante</b><span>Link de la oferta</span><span id="fxCargo"></span></div></div>
               <div class="fx-col"><div class="fx-n">02 Trigger</div>
-                <div class="fx-c pill"><b>Apps Script</b><span>Drive · cada 10 min</span></div></div>
+                <div class="fx-c pill"><b>Orquestador</b><span>Detecta la vacante y arranca el flujo</span></div></div>
               <div class="fx-col"><div class="fx-n">03 Lectura</div>
                 <div class="fx-c"><b>Requisitos</b><span>Qué pide el cargo</span></div>
                 <div class="fx-c"><b>Evidencia</b><span>Casos y cifras reales</span></div>
                 <div class="fx-c"><b>Guion</b><span>Video de 1 minuto</span></div></div>
               <div class="fx-col"><div class="fx-n">04 Armado</div>
-                <div class="fx-c hi"><b>Claude</b><i>Agente de IA</i><span>Arma el CV, la carta, el guion y esta página usando solo evidencia real.</span></div></div>
+                <div class="fx-c hi"><b>Agente de IA</b><i>Redacta y arma</i><span>Arma el CV, la carta, el guion y esta página usando solo evidencia real.</span></div></div>
               <div class="fx-col"><div class="fx-n">05 Aprobación</div>
-                <div class="fx-c"><b>Panel + Gmail</b><span>Me llega un correo, reviso cada pieza y apruebo. Recién ahí se publica y se generan los PDF.</span></div></div>
+                <div class="fx-c"><b>Panel de revisión</b><span>Me llega un correo, reviso cada pieza y apruebo. Recién ahí se publica y se generan los PDF.</span></div></div>
             </div>
             <div class="fx-out" aria-label="Lo que sale">
               <div class="fx-c"><b>CV y carta en PDF</b><span>Con QR a esta página</span></div>
-              <div class="fx-c"><b>Video con mi voz</b><span>ElevenLabs + montaje</span></div>
+              <div class="fx-c"><b>Video con mi voz</b><span>Voz clonada + montaje</span></div>
               <div class="fx-c"><b>Chat con la evidencia</b><span>Pregunta por cualquier punto</span></div>
-              <div class="fx-c"><b>Agenda</b><span>Google Calendar + Meet</span></div>
+              <div class="fx-c"><b>Agenda</b><span>Horarios libres + videollamada</span></div>
             </div>
             <div class="fx-foot">
               <p>Un link de vacante, <em>un CV hecho para el cargo.</em></p>
-              <div class="fx-k"><div><strong>7</strong>herramientas<br>integradas</div><div><strong>1</strong>aprobación<br>humana</div><div><strong>20</strong>min para<br>agendar</div></div>
+              <div class="fx-k"><div><strong>6</strong>servicios<br>conectados</div><div><strong>1</strong>aprobación<br>humana</div><div><strong>20</strong>min para<br>agendar</div></div>
             </div>
           </div>
         </section>
@@ -614,7 +614,7 @@ window.CVV_INIT = function(){
   $('#briefForm').addEventListener('submit', e => {
     e.preventDefault(); const v = $('#briefInput').value.trim(); if (!v) return;
     const ej = EJ.find(b => b.q === v); if (ej) return renderPyr(ej, 'Así lo armaría');
-    plan.innerHTML = ''; const p = el('p', 'empty', window.CVV ? 'Armando el caso con la evidencia de Paul…' : 'Vista previa: en la versión real, Claude responde tu brief con esta misma estructura.'); plan.appendChild(p);
+    plan.innerHTML = ''; const p = el('p', 'empty', window.CVV ? 'Armando el caso con la evidencia de Paul…' : 'Vista previa: en la versión real, la IA responde tu brief con esta misma estructura.'); plan.appendChild(p);
     if (!window.CVV) return;
     CVV.brief(v).then(r => { if (r && r.t) renderPyr(r, 'Así lo armaría'); else p.textContent = (r && r.error) || 'No pude armarlo ahora. Agenda 20 minutos y lo vemos juntos.'; })
       .catch(() => { p.textContent = 'No pude armarlo ahora. Agenda 20 minutos y lo vemos juntos.'; });
@@ -629,7 +629,7 @@ window.CVV_INIT = function(){
   }
   function answer(text) {
     add('me', text);
-    if (!window.CVV) { add('bot', 'Vista previa: en la versión real responde Claude con la evidencia de Paul.'); return; }
+    if (!window.CVV) { add('bot', 'Vista previa: en la versión real responde la IA con la evidencia de Paul.'); return; }
     const ty = el('div', 'typing', 'Buscando en la evidencia…'); log.appendChild(ty);
     CVV.preguntar(text).then(r => { ty.remove(); add('bot', r.texto, r.fuentes || [], r.derivada); if (r.fuentes && r.fuentes[0]) flash(r.fuentes[0]); })
       .catch(() => { ty.remove(); add('bot', 'No pude responder ahora. Agenda 20 minutos y lo conversas con Paul.', [], true); });
