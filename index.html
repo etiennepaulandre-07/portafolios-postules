@@ -163,6 +163,12 @@ td.req{font-weight:600;width:38%}
 .msg .src{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .msg .src button{font-family:var(--f-mono);font-size:11px;border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:4px;padding:2px 7px}
 .msg.route{border-color:var(--signal)}
+.msg .next{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.msg .next button{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 10px;text-align:left}
+.msg .next button:hover{border-color:var(--accent)}
+.msg .next button.go{border-color:var(--accent);font-weight:600}
+.plan-cta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.plan-cta button{border:1px solid var(--accent);background:transparent;color:var(--ink);border-radius:6px;padding:6px 12px;font-weight:600}
 .sugs{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
 .sugs button{font-size:13px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;text-align:left}
 .sugs button:hover{border-color:var(--accent)}
@@ -606,6 +612,7 @@ window.CVV_INIT = function(){
     (x.args || []).forEach(([tt, ds]) => { const li = el('li'); li.appendChild(el('b', null, tt)); const ul = el('ul'); (ds || []).forEach(d => ul.appendChild(el('li', null, d))); li.appendChild(ul); ol.appendChild(li); });
     plan.append(ol, el('p', 'pt', x.pt));
     const tg = el('div', 'tags'); (x.ev || []).forEach(id => { const b = el('button', 'evlink', 'Ya lo hice: ' + corto(id)); b.type = 'button'; b.onclick = () => flash(id); tg.appendChild(b); }); plan.appendChild(tg);
+    if (label === 'Así lo armaría') { const c = el('div', 'plan-cta'); c.append('¿Lo desarrollamos juntos? Paul lo lleva preparado a la reunión.'); const b = el('button', null, 'Agendar 20 min →'); b.type = 'button'; b.onclick = () => { ir($('.callTop')); if ($('#agenda').hidden) $('#callBtn').click(); }; c.appendChild(b); plan.appendChild(c); }
   }
   const EJ = V.briefs_ejemplo || [];
   $('#briefInput').placeholder = EJ[0] ? 'Ej: ' + EJ[0].q : 'Ej: un problema de tu equipo en dos frases';
@@ -622,16 +629,22 @@ window.CVV_INIT = function(){
 
   // ---------- chat ----------
   const log = $('#log');
-  function add(role, text, src, route) {
+  let ultima = '';
+  function add(role, text, src, route, extra) {
     const m = el('div', 'msg ' + role + (route ? ' route' : ''), text);
     if (src && src.length) { const s = el('div', 'src'); src.forEach(id => { const b = el('button', null, 'Ver: ' + corto(id)); b.type = 'button'; b.onclick = () => flash(id); s.appendChild(b); }); m.appendChild(s); }
+    const x = extra || {}, nx = el('div', 'next');
+    if (x.accion === 'brief') { const b = el('button', 'go', 'Armarlo como brief →'); b.type = 'button'; b.onclick = () => { $('#briefInput').value = ultima; ir($('#brief')); $('#briefInput').focus(); }; nx.appendChild(b); }
+    if (x.accion === 'agendar' || route) { const b = el('button', 'go', 'Ver horarios de Paul →'); b.type = 'button'; b.onclick = () => { ir($('.callTop')); if ($('#agenda').hidden) $('#callBtn').click(); }; nx.appendChild(b); }
+    (x.siguientes || []).forEach(q => { const b = el('button', null, q); b.type = 'button'; b.onclick = () => answer(q); nx.appendChild(b); });
+    if (nx.children.length) m.appendChild(nx);
     log.appendChild(m); log.scrollTop = log.scrollHeight;
   }
   function answer(text) {
-    add('me', text);
+    ultima = text; add('me', text);
     if (!window.CVV) { add('bot', 'Vista previa: en la versión real responde la IA con la evidencia de Paul.'); return; }
     const ty = el('div', 'typing', 'Buscando en la evidencia…'); log.appendChild(ty);
-    CVV.preguntar(text).then(r => { ty.remove(); add('bot', r.texto, r.fuentes || [], r.derivada); if (r.fuentes && r.fuentes[0]) flash(r.fuentes[0]); })
+    CVV.preguntar(text).then(r => { ty.remove(); add('bot', r.texto, r.fuentes || [], r.derivada, r); if (r.fuentes && r.fuentes[0]) flash(r.fuentes[0]); })
       .catch(() => { ty.remove(); add('bot', 'No pude responder ahora. Agenda 20 minutos y lo conversas con Paul.', [], true); });
   }
   const CH = V.chat || {};
