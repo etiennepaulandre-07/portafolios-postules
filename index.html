@@ -623,8 +623,8 @@ window.CVV_INIT = function(){
     const ej = EJ.find(b => b.q === v); if (ej) return renderPyr(ej, 'Así lo armaría');
     plan.innerHTML = ''; const p = el('p', 'empty', window.CVV ? 'Armando el caso con la evidencia de Paul…' : 'Vista previa: en la versión real, la IA responde tu brief con esta misma estructura.'); plan.appendChild(p);
     if (!window.CVV) return;
-    CVV.brief(v).then(r => { if (r && r.t) renderPyr(r, 'Así lo armaría'); else p.textContent = (r && r.error) || 'No pude armarlo ahora. Agenda 20 minutos y lo vemos juntos.'; })
-      .catch(() => { p.textContent = 'No pude armarlo ahora. Agenda 20 minutos y lo vemos juntos.'; });
+    CVV.brief(v).then(r => { if (r && r.t) renderPyr(r, 'Así lo armaría'); else p.textContent = (r && r.error) || 'Este brief merece armarse en vivo: agenda 20 minutos y Paul lo lleva preparado a la reunión.'; })
+      .catch(() => { p.textContent = 'Este brief merece armarse en vivo: agenda 20 minutos y Paul lo lleva preparado a la reunión.'; });
   });
 
   // ---------- chat ----------
@@ -645,7 +645,7 @@ window.CVV_INIT = function(){
     if (!window.CVV) { add('bot', 'Vista previa: en la versión real responde la IA con la evidencia de Paul.'); return; }
     const ty = el('div', 'typing', 'Buscando en la evidencia…'); log.appendChild(ty);
     CVV.preguntar(text).then(r => { ty.remove(); add('bot', r.texto, r.fuentes || [], r.derivada, r); if (r.fuentes && r.fuentes[0]) flash(r.fuentes[0]); })
-      .catch(() => { ty.remove(); add('bot', 'No pude responder ahora. Agenda 20 minutos y lo conversas con Paul.', [], true); });
+      .catch(() => { ty.remove(); const h = V.hilo || {}; add('bot', (h.prueba ? 'Lo principal: ' + h.prueba + ' ' : '') + 'Si quieres el detalle, Paul lo conversa contigo en 20 minutos.', (V.casos || []).slice(0, 1).map(c => c.id), false, { accion: 'agendar', siguientes: (CH.sugeridas || []).slice(0, 2) }); });
   }
   const CH = V.chat || {};
   (CH.sugeridas || []).forEach(q => { const b = el('button', null, q); b.type = 'button'; b.onclick = () => answer(q); $('#sugs').appendChild(b); });
