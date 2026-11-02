@@ -505,7 +505,7 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
             </div>
           </div>
         </section>
-        <p class="priv">Esta página registra de forma anónima que esta versión fue abierta (desde dónde y en qué tipo de dispositivo), cuánto tiempo, qué secciones y casos se vieron, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
+        <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
       </main>
       <aside class="chat" aria-label="Chat con el CV">
         <div class="chat-h"><h2>Pregúntale a este CV</h2><p>Responde solo con la evidencia de Paul. Si no la hay, lo dice.</p></div>
@@ -558,15 +558,14 @@ window.CVV_INIT = function(){
   (V.razones || []).forEach((r, i) => { const d = el('div', 'razon'); d.append(el('div', 'n', 'Razón ' + (i + 1) + ' · ' + (r.eje || '')), el('h3', null, r.titulo), el('p', null, r.texto)); $('#razones').appendChild(d); });
 
   // ---------- casos y matriz ----------
-  const CLICS = new Set();
-  function flash(id) { CLICS.add(id); const c = document.getElementById('ev-' + id); if (!c) return; c.scrollIntoView({ behavior: 'smooth', block: 'center' }); c.classList.add('flash'); setTimeout(() => c.classList.remove('flash'), 1800); }
+  function flash(id) { const c = document.getElementById('ev-' + id); if (!c) return; c.scrollIntoView({ behavior: 'smooth', block: 'center' }); c.classList.add('flash'); setTimeout(() => c.classList.remove('flash'), 1800); }
   (V.casos || []).forEach(c => {
     const a = el('article', 'caso'); a.id = 'ev-' + c.id;
     const org = el('div', 'org'); org.append(el('span', 'label', c.empresa + (c.periodo ? ' · ' + c.periodo : '')), el('span', 'chip ok', c.eje || ''));
     const tags = el('div', 'tags'); (c.tags || []).forEach(x => tags.appendChild(el('span', 'tag', x)));
     a.append(org, el('h3', null, c.titulo), el('p', null, c.resumen), tags);
     if (c.metrica) { const m = el('div', 'metric'); m.append(el('b', 'mono', c.metrica.valor), el('span', null, c.metrica.que)); a.appendChild(m); }
-    if (c.portafolio_url) { const l = el('a', 'full', 'Ver el caso completo →'); l.href = c.portafolio_url; l.target = '_blank'; l.rel = 'noopener'; l.onclick = () => CLICS.add('portafolio:' + c.id); a.appendChild(l); }
+    if (c.portafolio_url) { const l = el('a', 'full', 'Ver el caso completo →'); l.href = c.portafolio_url; l.target = '_blank'; l.rel = 'noopener'; a.appendChild(l); }
     $('#casos').appendChild(a);
   });
   const cls = a => /fuerte|supera/i.test(a) ? 'ok' : /parcial|medio/i.test(a) ? 'mid' : 'gap';
@@ -738,7 +737,6 @@ window.CVV_INIT = function(){
     CVV.horarios().then(h => { horas = h || []; pintar(); }).catch(() => { ag.innerHTML = ''; ag.appendChild(el('p', 'msg', 'No pude cargar los horarios. Intenta de nuevo en un rato.')); });
   });
 
-  let VMAX = 0;
   // ---------- video real: mp4 en el repo (V.video_url) o YouTube ----------
   if (window.V && V.video_url) {
     const pl = document.querySelector('.player');
@@ -748,7 +746,6 @@ window.CVV_INIT = function(){
     if (V.video_poster) vid.poster = V.video_poster;
     vid.style.cssText = 'width:100%;max-width:100%;aspect-ratio:16/9;background:#000;display:block;border-radius:8px';
     vid.addEventListener('play', () => { if (window.CVV) CVV.evento('video_play'); }, { once: true });
-    vid.addEventListener('timeupdate', () => { if (vid.duration) VMAX = Math.max(VMAX, vid.currentTime / vid.duration); });
     pl.appendChild(vid);
     conectarVideo(vid, null);
     fetch(V.video_url.replace(/\.mp4(\?.*)?$/, '.json')).then(r => r.ok ? r.json() : null).then(t => { if (t && t.escenas) conectarVideo(vid, t.escenas); }).catch(() => {});
@@ -757,26 +754,7 @@ window.CVV_INIT = function(){
 
   // ---------- señales y video real ----------
   if (window.CVV && window.CVV_DATA) {
-    // Todo anónimo: sin correo, sin IP. Un código al azar por visita para agrupar lo que hizo esa persona.
-    const SID = Math.random().toString(36).slice(2, 7);
-    let visita = 1; try { const k = 'cvv_n_' + (CVV_DATA.token || ''); visita = +(localStorage.getItem(k) || 0) + 1; localStorage.setItem(k, String(visita)); } catch (e) {}
-    const qs = new URLSearchParams(location.search);
-    let origen = qs.get('src') || ''; if (!origen) { try { origen = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : 'directo'; } catch (e) { origen = 'directo'; } }
-    const disp = matchMedia('(max-width:760px)').matches ? 'celular' : 'computador';
-    setTimeout(() => { if (document.visibilityState === 'visible') CVV.evento('apertura', 'origen ' + origen + ' · ' + disp + ' · visita ' + visita + ' · id ' + SID); }, (CVV_DATA.min_s || 3) * 1000);
-    // Resumen de la visita: tiempo, secciones vistas, cuánto del video, qué casos abrió. Se manda al salir o cambiar de pestaña.
-    const VISTO = new Set(), nombreSec = sec => sec.id === 'demandaSec' ? 'cómo lo haría' : sec.id === 'brief' ? 'brief' : sec.id === 'perfilSec' ? 'perfil' : sec.id === 'sistemaSec' ? 'esquema' : sec.classList.contains('callTop') ? 'agenda' :
-      (((sec.querySelector('h2') || {}).textContent || 'otra').toLowerCase().indexOf('paul en') === 0 ? 'video' : ((sec.querySelector('h2') || {}).textContent || '').toLowerCase().indexOf('casos') === 0 ? 'casos' : 'requisitos');
-    if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) VISTO.add(nombreSec(e.target)); }), { threshold: 0.35 }); document.querySelectorAll('section').forEach(x => io.observe(x)); }
-    let activo = 0, desde = Date.now(), ultimo = '';
-    function resumen() {
-      if (document.visibilityState === 'hidden') { activo += Date.now() - desde; } else return;
-      const seg = Math.round(activo / 1000); if (seg < (CVV_DATA.min_s || 3)) return;
-      const t = 'id ' + SID + ' · ' + Math.floor(seg / 60) + 'm ' + (seg % 60) + 's · vio: ' + ([...VISTO].join(', ') || '—') + ' · video ' + Math.round(VMAX * 100) + '%' + (CLICS.size ? ' · abrió: ' + [...CLICS].map(corto).join(', ') : '');
-      if (t !== ultimo) { ultimo = t; CVV.beacon('resumen', t); }
-    }
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') desde = Date.now(); else resumen(); });
-    addEventListener('pagehide', resumen);
+    setTimeout(() => { if (document.visibilityState === 'visible') CVV.evento('apertura'); }, (CVV_DATA.min_s || 3) * 1000);
     if (CVV_DATA.youtube_id && !(window.V && V.video_url)) {
       const pl = document.querySelector('.player');
       pl.innerHTML = '<div style="position:relative;aspect-ratio:16/9;max-width:100%"><iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(CVV_DATA.youtube_id) + '?rel=0&modestbranding=1" title="Paul en video" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>';
