@@ -27,14 +27,34 @@ def pcm24(voz, tmp):
     w = wave.open(out); n = w.getnframes(); data = w.readframes(n); w.close()
     return out, data, n / 24000.0
 
-def cortes(data, escenas):
-    F = 480; rms = []
-    for i in range(0, len(data) - 2 * F, 2 * F):
-        v = struct.unpack('<%dh' % F, data[i:i + 2 * F]); rms.append(math.sqrt(sum(x * x for x in v) / F) / 32768)
-    palabras = [len(str(e.get('locucion', '')).split()) for e in escenas]
-    js = open(os.path.join(TALLER, 'segmentar.js')).read() + '\nconsole.log(JSON.stringify(segmentarVoz(%s, 0.02, %s)));' % (json.dumps(rms), json.dumps(palabras))
-    r = subprocess.run(['node', '-e', js], capture_output=True, text=True, check=True)
-    return json.loads(r.stdout.strip().splitlines()[-1])
+def cortes(wav, escenas):
+    """Cortes de escena: estimación por palabras restantes, ajustada a la pausa real más cercana (±1,6 s)."""
+    r = subprocess.run(['ffmpeg', '-i', wav, '-af', 'silencedetect=n=-32dB:d=0.15', '-f', 'null', '-'], capture_output=True, text=True)
+    ini = [float(x) for x in re.findall(r'silence_start: ([0-9.]+)', r.stderr)]
+    fin = [float(x) for x in re.findall(r'silence_end: ([0-9.]+)', r.stderr)]
+    pausas = [((a + b) / 2, b - a) for a, b in zip(ini, fin)]
+    dur = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', wav], capture_output=True, text=True).stdout)
+    habla_ini = fin[0] if ini and ini[0] < 0.05 else 0.0
+    habla_fin = ini[-1] if ini and (len(fin) < len(ini) or fin[-1] >= dur - 0.05) else dur
+    w = [max(1, len(re.sub(r'[^\wáéíóúñü]', '', str(e.get('locucion', '')))) + 6 * len(re.findall(r'[,;:.?!…—]', str(e.get('locucion', ''))))) for e in escenas]   # letras + pausas de puntuación
+    t, out = habla_ini, []
+    for k in range(len(escenas) - 1):
+        est = t + w[k] / sum(w[k:]) * (habla_fin - t)
+        cand = [(p, d) for p, d in pausas if abs(p - est) <= 1.6 and p > t + 1.0]
+        c = min(cand, key=lambda x: abs(x[0] - est) - 2 * x[1])[0] if cand else est      # cerca de lo estimado y, si se puede, una pausa larga
+        out.append([round(t, 3), round(c, 3)]); t = c
+    out.append([round(t, 3), round(habla_fin, 3)])
+    return out
+
+def cortes_palabras(dir_, escenas):
+    """Si hay palabras.json (tiempos por palabra de una transcripción), los cortes son exactos."""
+    f = os.path.join(dir_, 'palabras.json')
+    if not os.path.exists(f): return None
+    w = json.load(open(f)); n = [len(str(e.get('locucion', '')).replace('—', ' ').split()) for e in escenas]
+    if sum(n) != len(w): print('palabras.json no calza con el guion (%d vs %d); uso pausas' % (len(w), sum(n))); return None
+    out, k = [], 0
+    for c in n: out.append(w[k:k + c]); k += c
+    return out
 
 def frases(t, maxp=7):
     partes, act = [], []
@@ -44,19 +64,25 @@ def frases(t, maxp=7):
     if act: partes.append(' '.join(act))
     return [re.sub(r'\s+—\s+', ' — ', p).strip() for p in partes]
 
-def datos(V, cuts, dur_voz, extra):
+def datos(V, cuts, dur_voz, extra, pal=None):
     esc = V['guion']['escenas']; beats = json.load(open(os.path.join(TALLER, 'beats.json')))['beats']
     def snap(t):
         b = min(beats, key=lambda x: abs(x - t)); return b if abs(b - t) < 0.35 else t
-    habla_fin = cuts[-1][1] + OFF
-    DUR = round(min(60.0, max(56.0, habla_fin + 3.4)), 2)
+    habla_fin = (pal[-1][-1][1] if pal else cuts[-1][1]) + OFF
+    DUR = round(min(62.5, max(56.0, habla_fin + 3.6)), 2)          # la música se rellena con silencio si el video pasa de 60 s
     lim = [0.0] + [round(snap(cuts[i][1] + OFF + 0.1), 3) for i in range(len(esc) - 1)] + [DUR]
     D = {'empresa': V.get('empresa', ''), 'beat0': beats[0], 'habla_fin': habla_fin,
-         'cita': (V.get('guion_inputs') or {}).get('cita_ficha') or esc[2].get('en_pantalla', '').strip('“”…'),
+         'cita': esc[2].get('en_pantalla', '').strip('“”…"').strip() or (V.get('guion_inputs') or {}).get('cita_ficha', ''),
          'escenas': []}
     for i, e in enumerate(esc):
         d = {'rol': e['rol'], 'a': lim[i], 'b': lim[i + 1], 'pantalla': e.get('en_pantalla', ''), 'subs': frases(e.get('locucion', ''))}
         if i == 0: d['sa'] = OFF
+        if pal:
+            k, t = 0, []
+            for fr in d['subs']:
+                c = len(fr.replace(' — ', ' ').split()); g = pal[i][k:k + c] or pal[i][-1:]
+                t.append([round(g[0][0] + OFF, 3), round(g[-1][1] + OFF, 3)]); k += c
+            d['subt'] = t
         D['escenas'].append(d)
     D.update(extra)
     if len(D['cita']) > 170: D['cita'] = D['cita'][:167].rsplit(' ', 1)[0] + '…'
@@ -132,7 +158,7 @@ def mezcla(mudo, voz, D, DUR, salida):
     cafe = D['escenas'][-1]; sfx.append(('ui', cafe['a'] + 1.6, 0.35))
     ins = ['-i', mudo, '-i', voz, '-i', os.path.join(TALLER, 'musica.mp3')]
     fil = [f'[1:a]adelay={int(OFF * 1000)}|{int(OFF * 1000)},apad,atrim=0:{DUR},asplit=2[v][vk]',
-           f'[2:a]atrim=0:{DUR},volume=0.30,afade=t=out:st={DUR - 2.2}:d=2.2[m0]',
+           f'[2:a]apad,atrim=0:{DUR},volume=0.30,afade=t=out:st={min(DUR, 60.0) - 2.2}:d=2.2[m0]',
            '[m0][vk]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=400[m]']
     tags = ['[v]', '[m]']
     for k, (n, t, vol) in enumerate(sfx):
@@ -146,8 +172,13 @@ def main():
     dir_ = os.path.abspath(sys.argv[1]); V, voz, extra = cargar(dir_); tok = V['token']
     tmp = tempfile.mkdtemp(prefix='montaje-')
     wav, data, dur = pcm24(voz, tmp)
-    cuts = cortes(data, V['guion']['escenas'])
-    D, DUR = datos(V, cuts, dur, extra)
+    pal = cortes_palabras(dir_, V['guion']['escenas'])
+    if pal:
+        cuts = [[g[0][0], g[-1][1]] for g in pal]
+        for i in range(len(cuts) - 1): cuts[i][1] = round((pal[i][-1][1] + pal[i + 1][0][0]) / 2, 3)
+    else:
+        cuts = cortes(wav, V['guion']['escenas'])
+    D, DUR = datos(V, cuts, dur, extra, pal)
     open(os.path.join(tmp, 'data.js'), 'w').write('window.D=' + json.dumps(D, ensure_ascii=False) + ';')
     shutil.copy(os.path.join(TALLER, 'plantilla.html'), tmp)
     asyncio.run(capturas(V, tmp)); asyncio.run(recuadro_pdf(V, tmp))
