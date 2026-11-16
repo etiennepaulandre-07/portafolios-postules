@@ -738,7 +738,7 @@ window.CVV_INIT = function(){
   });
 
   // ---------- video real: mp4 en el repo (V.video_url) o YouTube ----------
-  if (window.V && V.video_url) {
+  function montarVideo() {
     const pl = document.querySelector('.player');
     pl.innerHTML = '';
     const vid = document.createElement('video');
@@ -751,6 +751,14 @@ window.CVV_INIT = function(){
     fetch(V.video_url.replace(/\.mp4(\?.*)?$/, '.json')).then(r => r.ok ? r.json() : null).then(t => { if (t && t.escenas) conectarVideo(vid, t.escenas); }).catch(() => {});
     $('#vnote').textContent = 'Video armado con IA a partir de un guion que Paul escribió y aprobó. La voz es la suya.';
   }
+  // Video por convención: si el montaje automático dejó v/<token>.mp4 (con su .json de tiempos), se usa aunque el version.json no traiga video_url
+  if (window.V && V.video_url) montarVideo();
+  else if (window.V && V.token && /^v-[a-z0-9-]+$/.test(V.token)) {
+    fetch('v/' + V.token + '.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(t => {
+      if (t && t.escenas) { V.video_url = 'v/' + V.token + '.mp4'; V.video_poster = 'v/' + V.token + '.jpg'; montarVideo(); }
+    }).catch(() => {});
+  }
+
 
   // ---------- señales y video real ----------
   if (window.CVV && window.CVV_DATA) {

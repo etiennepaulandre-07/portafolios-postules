@@ -1,0 +1,9 @@
+{
+ "hook_nodos": ["segmento", "mercado", "método de pago", "incentivo", "medición"],
+ "lados": ["DATOS", "NEGOCIO"],
+ "evid_nodos": ["segmentos", "experimento", "grupo de control", "escala"],
+ "evid_ok": "medido",
+ "evid_stack": "propensión · grupos de control · APIs",
+ "chips": ["Mercados", "Corredores", "Métodos de pago", "Incentivos"],
+ "chip_meta": "revenue incremental"
+}
