@@ -125,9 +125,9 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
 
   // ---------- detalle ----------
   const NOMBRE = { carpeta: 'Generar PDF y enviármelos', aprobar: 'Aprobar', cambios: 'Pedir cambios', regenerar: 'Generar otro audio', enviada: 'Ya postulé', reintentar: 'Reintentar' };
-  const AYUDA = { guion: 'Lee el guion abajo. Si apruebas, se genera el audio con tu voz (o, mientras no esté ElevenLabs, te llegan el CV y la carta en PDF por email). Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
-    audio: 'Escucha el audio. Si apruebas, se genera el video (cobra un render).', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
-    error: 'Algo falló. Lee la nota y reintenta.', montaje: 'Tus clips de Higgsfield están en la carpeta clips. Pásaselos a Claude para el montaje; el video final se publica solo al dejarlo como video-final.mp4.', proceso: 'Está trabajando; te aviso cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
+  const AYUDA = { guion: 'Revisa el borrador (abajo) y el guion. Si apruebas, se genera el audio con tu voz y te llega un correo para escucharlo. Si pides cambios, Claude lo reescribe con tu comentario y te aviso.',
+    audio: 'Escucha el audio (link Audio, arriba). Si apruebas, se sube solo al montaje y le dices a Claude "monta" para armar el video.', envio: 'El video y la página están listos. Postula con el PDF y márcala.',
+    error: 'Algo falló. Lee la nota y reintenta.', montaje: 'El audio aprobado ya está en el repo (carpeta montaje). Dile a Claude "monta" + el nombre de la empresa y el video aparece en tu página.', proceso: 'Está trabajando; te aviso cuando termine.', seguimiento: 'Ya postulaste. Aquí ves las señales del reclutador.', cerrada: 'Postulación cerrada.' };
 
   function detalle(d) {
     const f = d.fila, et = d.etapa;
@@ -139,21 +139,6 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
     [['Vacante', f.link_vacante], ['Página del reclutador', f.link_reclutador], ['CV en PDF', f.cv_pdf], ['Audio', f.audio], ['Video', f.video_drive], ['Carpeta', f.carpeta]]
       .forEach(([t, u]) => { if (u && /^https:\/\//.test(u)) { const a = el('a', null, t); a.href = u; a.target = '_blank'; a.rel = 'noopener'; L.appendChild(a); } });
     h.appendChild(L); app.appendChild(h);
-
-    // borrador casi final: la página del reclutador, el CV y la carta tal como saldrán
-    const bt = el('div', 'tabs'), marco = el('div');
-    const vistas = [['Página del reclutador', 'url', f.link_reclutador ? f.link_reclutador + '&preview=1#pk=' + K : ''], ['CV', 'html', d.cv_html], ['Carta', 'html', d.carta_html]].filter(x => x[2]);
-    const ver = i => {
-      bt.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
-      marco.innerHTML = ''; const [t, tipo, val] = vistas[i]; const fr = el('iframe', 'prev'); fr.title = t;
-      if (tipo === 'url') { fr.src = val; const a = el('a', 'prev-open', 'Abrir en pestaña nueva →'); a.href = val; a.target = '_blank'; a.rel = 'noopener'; marco.append(fr, a); }
-      else { fr.srcdoc = '<div style="max-width:760px;margin:24px auto;padding:0 20px">' + val + '</div>'; marco.appendChild(fr); }
-    };
-    if (vistas.length) {
-      const lb = el('div', 'lbl', 'Borrador · así lo verá ' + f.empresa); lb.style.marginTop = '22px'; app.appendChild(lb);
-      vistas.forEach((x, i) => { const b = el('button', 'tab', x[0]); b.type = 'button'; b.onclick = () => ver(i); bt.appendChild(b); });
-      app.append(bt, marco); ver(0);
-    }
 
     // decisión
     const box = el('div', 'box' + (et.acciones.length ? ' decide' : ''));
@@ -175,6 +160,22 @@ textarea{width:100%;min-height:96px;margin:12px 0;border:1px solid var(--line);b
     const nota = el('button', 'btn', 'Guardar comentario'); nota.type = 'button'; nota.onclick = () => { if (ta.value.trim()) accion('nota'); }; btns.appendChild(nota);
     if (et.etapa !== 'cerrada') { const del = el('button', 'btn del', 'Descartar'); del.type = 'button'; del.dataset.a = 'descartar'; del.onclick = () => accion('descartar'); btns.appendChild(del); }
     box.append(btns, msg); app.appendChild(box);
+
+    // borrador casi final: la página del reclutador, el CV y la carta tal como saldrán
+    const bt = el('div', 'tabs'), marco = el('div');
+    const vistas = [['Página del reclutador', 'url', f.link_reclutador ? f.link_reclutador + '&preview=1#pk=' + K : ''], ['CV', 'html', d.cv_html], ['Carta', 'html', d.carta_html]].filter(x => x[2]);
+    const ver = i => {
+      bt.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+      marco.innerHTML = ''; const [t, tipo, val] = vistas[i]; const fr = el('iframe', 'prev'); fr.title = t;
+      if (tipo === 'url') { fr.src = val; const a = el('a', 'prev-open', 'Abrir en pestaña nueva →'); a.href = val; a.target = '_blank'; a.rel = 'noopener'; marco.append(fr, a); }
+      else { fr.srcdoc = '<div style="max-width:760px;margin:24px auto;padding:0 20px">' + val + '</div>'; marco.appendChild(fr); }
+    };
+    if (vistas.length) {
+      const lb = el('div', 'lbl', 'Borrador · así lo verá ' + f.empresa); lb.style.marginTop = '22px'; app.appendChild(lb);
+      vistas.forEach((x, i) => { const b = el('button', 'tab', x[0]); b.type = 'button'; b.onclick = () => ver(i); bt.appendChild(b); });
+      app.append(bt, marco); ver(0);
+    }
+
 
     // señales (cuando ya se envió)
     if (et.etapa === 'seguimiento') {
