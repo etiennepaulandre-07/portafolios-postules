@@ -1,49 +1,49 @@
 {
- "generado": "2026-11-25T01:41:29.397Z",
+ "generado": "2026-11-25T02:07:03.219Z",
  "fuente": "pausas del audio",
- "duracion_s": 50.980000000000004,
+ "duracion_s": 52.6,
  "escenas": [
   {
    "n": 1,
    "rol": "hook",
    "desde_s": 0.18,
-   "hasta_s": 7.37
+   "hasta_s": 7.29
   },
   {
    "n": 2,
    "rol": "idea",
-   "desde_s": 7.37,
-   "hasta_s": 11.76
+   "desde_s": 7.29,
+   "hasta_s": 14.59
   },
   {
    "n": 3,
    "rol": "premisa",
-   "desde_s": 11.76,
-   "hasta_s": 15.79
+   "desde_s": 14.59,
+   "hasta_s": 20.72
   },
   {
    "n": 4,
    "rol": "evidencia",
-   "desde_s": 15.79,
-   "hasta_s": 35.76
+   "desde_s": 20.72,
+   "hasta_s": 37.85
   },
   {
    "n": 5,
    "rol": "conclusion",
-   "desde_s": 35.76,
-   "hasta_s": 48.24
+   "desde_s": 37.85,
+   "hasta_s": 43.43
   },
   {
    "n": 6,
    "rol": "demo",
-   "desde_s": 48.24,
-   "hasta_s": 49.56
+   "desde_s": 43.43,
+   "hasta_s": 50.95
   },
   {
    "n": 7,
    "rol": "cafe",
-   "desde_s": 49.56,
-   "hasta_s": 50.68
+   "desde_s": 50.95,
+   "hasta_s": 52.32
   }
  ],
  "clips": [
@@ -51,15 +51,15 @@
    "id": "esc2-idea",
    "tipo": "lipsync",
    "foto": "frente",
-   "desde_s": 7.2700000000000005,
-   "hasta_s": 11.91
+   "desde_s": 7.19,
+   "hasta_s": 14.74
   },
   {
    "id": "esc5-conclusion",
    "tipo": "lipsync",
    "foto": "frente",
-   "desde_s": 35.66,
-   "hasta_s": 48.39
+   "desde_s": 37.75,
+   "hasta_s": 43.58
   },
   {
    "id": "esc7-cafe",
