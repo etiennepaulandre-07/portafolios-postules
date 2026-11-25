@@ -1,0 +1,694 @@
+{
+ "empresa": "Cencosud",
+ "cargo": "Martech & Growth Manager",
+ "token": "v-cencosud-3b8e61d4",
+ "nombre": "Paul Andre Etienne Morales",
+ "nombre_corto": "Paul Etienne",
+ "titular": "Martech & Growth Analytics | Medición móvil | CRM | Experimentación | Atribución | IA",
+ "contacto": {
+  "email": "etienne.paul.andre@gmail.com",
+  "tel": "+56 9 4620 8116",
+  "ubicacion": "Santiago, Chile",
+  "linkedin": "https://www.linkedin.com/in/paul-andre-etienne-morales07",
+  "portafolio": "https://claude.ai/artifact/GN5ZobBi2Q6syeAcFJ6VQw"
+ },
+ "descripcion": "Especialista en Martech y Growth Analytics con 5+ años en fintech (Tenpo, Yape, Capitaria). Implemento y gobierno la medición de apps y campañas (MMP, eventos, deeplinks), mido incrementalidad con grupos de control y automatizo la operación de marketing con IA y APIs.",
+ "perfil": "Especialista en Martech y Growth Analytics con 5+ años en fintech y servicios financieros. Conecta medición, atribución, CRM y datos de clientes con el negocio: implementación y gobierno de datos de marketing, medición de apps y campañas, experimentación controlada e incrementalidad, y automatización con IA. Operaciones en Perú, Uruguay, Chile y México.",
+ "hilo": {
+  "tension": "Escalar el martech en varios países: el desafío es que cada plataforma mida lo mismo, con datos confiables, y que eso se convierta en decisiones de crecimiento.",
+  "transformacion": "Estándares de medición comunes, datos gobernados y campañas medidas contra control, con la operación automatizada donde aporta.",
+  "prueba": "Tenpo: atribución con Singular, taxonomía de canales propios e incrementalidad con grupos de control; Yape: ~21K transacciones incrementales medidas contra control.",
+  "puente": "En Cencosud ordenaría la medición por país y plataforma con un estándar común, y mediría cada campaña contra control antes de escalarla.",
+  "frase_firma": "la medición ordena, el negocio decide"
+ },
+ "casos": [
+  {
+   "id": "tenpo-med",
+   "empresa": "Tenpo",
+   "titulo": "Medición y gobierno de datos de marketing",
+   "resumen": "Atribución de campañas con Singular (MMP), tracking de Email Delivered en CleverTap, revisión del SDK para el Funnel 2.0, e incrementalidad e inferencia causal con grupos de control y modelos incrementales para campañas de canales propios. Taxonomía de canales propios en curso: eventos, deeplinks y nomenclador de campañas.",
+   "cifras": [],
+   "periodo": "actual",
+   "eje": "Medición",
+   "tags": [
+    "MMP",
+    "Incrementalidad",
+    "Taxonomía"
+   ],
+   "metrica": {
+    "valor": "MMP + control",
+    "que": "atribución e incrementalidad en canales propios"
+   }
+  },
+  {
+   "id": "capitaria",
+   "empresa": "Capitaria",
+   "titulo": "Atribución y data mart en 4 mercados",
+   "resumen": "Modelo de atribución first touch con trazabilidad UTM hasta leads, SQL, cierres y primeros depósitos en Salesforce, y data mart diario en Python y Power BI que une Meta, Google Ads y Salesforce. Presupuesto de medios de más de USD 900K al año en Perú, Uruguay, Chile y México.",
+   "cifras": [
+    "conversión lead a cliente en mes 0 de 0,30% a 0,67%",
+    "primer depósito promedio de CLP 2,5M a CLP 4,5M",
+    "lead a SQL de 25,4% a 32,4% en Display",
+    "ingresos +89% (+USD 1M)"
+   ],
+   "periodo": "2024–2025",
+   "eje": "Atribución",
+   "tags": [
+    "UTM",
+    "Data mart",
+    "Cohortes"
+   ],
+   "metrica": {
+    "valor": "0,30% → 0,67%",
+    "que": "conversión lead a cliente en mes 0"
+   }
+  },
+  {
+   "id": "yape",
+   "empresa": "Yape",
+   "titulo": "Audiencias y experimentos con control",
+   "resumen": "200K usuarios segmentados con propensión y 8 clusters; experimentos con grupo de control por cluster en push, retargeting pagado y combinados. El ingreso mensual de pago de servicios pasó de USD 40K a 140K.",
+   "cifras": [
+    "~21K transacciones incrementales",
+    "200K usuarios segmentados",
+    "ingreso mensual de USD 40K a 140K"
+   ],
+   "periodo": "2021–2024",
+   "eje": "Audiencias",
+   "tags": [
+    "Propensión",
+    "Grupo de control",
+    "CRM"
+   ],
+   "metrica": {
+    "valor": "~21K",
+    "que": "transacciones incrementales medidas contra control"
+   }
+  },
+  {
+   "id": "smart",
+   "empresa": "Tenpo",
+   "titulo": "Automatización con IA: Smart Campaign",
+   "resumen": "Flujos en n8n con agentes de IA que convierten un brief en Jira en una campaña desplegada vía API, con controles de seguridad y aprobación humana.",
+   "cifras": [
+    "20% del total de acciones, automatizadas"
+   ],
+   "periodo": "actual",
+   "eje": "Automatización",
+   "tags": [
+    "Agentes de IA",
+    "APIs",
+    "n8n"
+   ],
+   "metrica": {
+    "valor": "20%",
+    "que": "de las acciones de marketing, automatizadas"
+   }
+  }
+ ],
+ "matriz": [
+  {
+   "requisito": "Estándares de medición y atribución multiplataforma (MMP)",
+   "evidencia": [
+    "tenpo-med",
+    "capitaria"
+   ],
+   "ajuste": "Fuerte",
+   "nota": "Singular hoy; AppsFlyer o Adjust serían nuevos."
+  },
+  {
+   "requisito": "Gobierno y calidad de datos de marketing",
+   "evidencia": [
+    "tenpo-med",
+    "capitaria"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "Experimentación, incrementalidad y atribución",
+   "evidencia": [
+    "tenpo-med",
+    "yape"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "Audiencias y datos de primera parte",
+   "evidencia": [
+    "yape"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "GA4, Firebase, CDP y CRM",
+   "evidencia": [
+    "tenpo-med"
+   ],
+   "ajuste": "Parcial",
+   "nota": "CRM (CleverTap, Salesforce, HubSpot) y GA4; Firebase y CDP serían nuevos."
+  },
+  {
+   "requisito": "SQL / BigQuery y dashboards",
+   "evidencia": [
+    "capitaria",
+    "smart"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "Google, Meta y TikTok Ads",
+   "evidencia": [
+    "capitaria"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "Automatización de procesos de marketing",
+   "evidencia": [
+    "smart"
+   ],
+   "ajuste": "Fuerte"
+  },
+  {
+   "requisito": "Marketing Mix Modeling",
+   "evidencia": [],
+   "ajuste": "Parcial",
+   "nota": "Proyecto de portafolio."
+  },
+  {
+   "requisito": "Retail o ecommerce",
+   "evidencia": [],
+   "ajuste": "Brecha",
+   "nota": "Mi experiencia es en fintech; el método de medición se traslada."
+  },
+  {
+   "requisito": "Inglés intermedio-avanzado",
+   "evidencia": [],
+   "ajuste": "Cumple",
+   "nota": "TOEFL iBT 90."
+  }
+ ],
+ "guion": {
+  "escenas": [
+   {
+    "n": 1,
+    "rol": "hook",
+    "inicio_s": 0,
+    "fin_s": 9,
+    "locucion": "Si un cliente compra en la app, la web y la tienda, ¿qué campaña lo movió de verdad? Soy Paul; este video lo armó una IA.",
+    "en_pantalla": "App · Web · Tienda → ¿qué lo movió?",
+    "visual": "La línea se dibuja; IA a un lado, equipo al otro",
+    "fuente": [
+     "sistema"
+    ]
+   },
+   {
+    "n": 2,
+    "rol": "idea",
+    "inicio_s": 9,
+    "fin_s": 17.5,
+    "locucion": "Postulo a Martech and Growth Manager en Cencosud con una idea: la medición ordena, el negocio decide; el valor está en esa línea.",
+    "en_pantalla": "La medición ordena. El negocio decide.",
+    "visual": "Paul a cámara; la línea lo cruza",
+    "fuente": [
+     "hipotesis"
+    ]
+   },
+   {
+    "n": 3,
+    "rol": "premisa",
+    "inicio_s": 17.5,
+    "fin_s": 25,
+    "locucion": "El cargo pide estándares de medición, datos gobernados y audiencias propias, en varios países y plataformas a la vez.",
+    "en_pantalla": "“Estándares de medición y gobierno de datos…”",
+    "visual": "La cita de la ficha se escribe sola",
+    "fuente": [
+     "ficha"
+    ]
+   },
+   {
+    "n": 4,
+    "rol": "evidencia",
+    "inicio_s": 25,
+    "fin_s": 35,
+    "locucion": "En Tenpo atribuyo campañas con un MMP, ordeno eventos en una taxonomía y mido incrementalidad con control. En Yape, los experimentos con control sumaron unas 21 mil transacciones incrementales.",
+    "en_pantalla": "MMP · Taxonomía · Grupo de control",
+    "visual": "Fuentes → estándar → experimento con control",
+    "fuente": [
+     "tenpo-med",
+     "yape"
+    ]
+   },
+   {
+    "n": 5,
+    "rol": "conclusion",
+    "inicio_s": 35,
+    "fin_s": 42,
+    "locucion": "Por eso puedo aportar un estándar que todos los países usen, y crecimiento que se puede probar.",
+    "en_pantalla": "Un estándar · Crecimiento probado",
+    "visual": "Paul a cámara; la línea se vuelve borde suave",
+    "fuente": [
+     "hipotesis"
+    ]
+   },
+   {
+    "n": 6,
+    "rol": "demo",
+    "inicio_s": 42,
+    "fin_s": 51,
+    "locucion": "Antes de irse, en esta página pueden revisar mis casos, preguntarle a la IA sobre mi experiencia y agendar un café conmigo.",
+    "en_pantalla": "Casos · Pregúntale a la IA · Agenda un café",
+    "visual": "Grabación real del CV interactivo",
+    "fuente": [
+     "sistema"
+    ]
+   },
+   {
+    "n": 7,
+    "rol": "cafe",
+    "inicio_s": 51,
+    "fin_s": 58,
+    "locucion": "Yo ya pedí el mío… ¿agendamos el suyo?",
+    "en_pantalla": "Agendar 20 min →",
+    "visual": "Paul en un café esperando, mira el reloj, sonríe y levanta la taza",
+    "fuente": [
+     "sistema"
+    ]
+   }
+  ]
+ },
+ "numeros_permitidos": [
+  "5",
+  "20",
+  "21",
+  "200",
+  "40",
+  "140",
+  "900",
+  "89",
+  "0,30",
+  "0,67",
+  "2,5",
+  "4,5",
+  "25,4",
+  "32,4",
+  "4",
+  "8"
+ ],
+ "ids_permitidos": [
+  "sistema",
+  "ficha",
+  "hipotesis",
+  "yape",
+  "capitaria",
+  "tenpo-med",
+  "smart"
+ ],
+ "notas_cifras": {
+  "20": "Smart Campaign 20%; llamada de 20 minutos",
+  "4": "4 mercados en Capitaria"
+ },
+ "ficha_candidato": [
+  [
+   "Experiencia",
+   "5+ años en fintech"
+  ],
+  [
+   "Medición",
+   "MMP, eventos, grupos de control"
+  ],
+  [
+   "Automatización",
+   "20% de acciones con IA (Tenpo)"
+  ],
+  [
+   "Formación",
+   "Magíster Marketing, U. de Chile"
+  ],
+  [
+   "Base",
+   "Santiago"
+  ]
+ ],
+ "razones": [
+  {
+   "eje": "Medición",
+   "titulo": "Cada campaña medida contra control",
+   "texto": "En Tenpo mido incrementalidad con grupos de control y modelos incrementales en canales propios; en Yape, ~21K transacciones incrementales."
+  },
+  {
+   "eje": "Datos",
+   "titulo": "Un estándar que todos usan",
+   "texto": "Taxonomía de canales propios en Tenpo y nomenclatura UTM con data mart diario en Capitaria, que reemplazó los reportes manuales."
+  },
+  {
+   "eje": "Automatización",
+   "titulo": "IA con aprobación humana",
+   "texto": "Smart Campaign: 20% de las acciones de marketing automatizadas, de brief a campaña vía API."
+  }
+ ],
+ "demanda": {
+  "titulo": "Cómo ordenaría el martech de Cencosud",
+  "etapas": [
+   {
+    "etapa": "Diagnóstico",
+    "titulo": "Qué se mide y cómo",
+    "texto": "Mapa de eventos, fuentes y atribución por país y plataforma, con sus brechas de calidad.",
+    "ev": [
+     "tenpo-med"
+    ]
+   },
+   {
+    "etapa": "Estándar",
+    "titulo": "Una sola taxonomía",
+    "texto": "Eventos, deeplinks y nomenclatura de campañas comunes, con dueño y reglas de calidad.",
+    "ev": [
+     "tenpo-med",
+     "capitaria"
+    ]
+   },
+   {
+    "etapa": "Experimento",
+    "titulo": "Siempre con grupo de control",
+    "texto": "Campañas y audiencias medidas por incrementalidad antes de escalar.",
+    "ev": [
+     "tenpo-med",
+     "yape"
+    ]
+   },
+   {
+    "etapa": "Activación",
+    "titulo": "Audiencias de primera parte",
+    "texto": "Segmentos con propensión conectados a medios y CRM.",
+    "ev": [
+     "yape"
+    ]
+   },
+   {
+    "etapa": "Seguimiento",
+    "titulo": "Tableros y automatización",
+    "texto": "Performance por país en un tablero, con alertas y procesos automatizados.",
+    "ev": [
+     "smart",
+     "capitaria"
+    ]
+   }
+  ]
+ },
+ "brief_rol": {
+  "t": "Lo más importante del rol: que cada país y cada plataforma midan igual, y que eso se traduzca en decisiones de crecimiento.",
+  "base": "Medición útil = datos confiables × estándar común × decisión medida contra control.",
+  "args": [
+   [
+    "Datos confiables y comunes",
+    [
+     "Taxonomía de eventos y campañas por país",
+     "Reglas de calidad con dueño"
+    ]
+   ],
+   [
+    "Decisiones medidas",
+    [
+     "Incrementalidad con grupos de control",
+     "Atribución y tableros por plataforma"
+    ]
+   ]
+  ],
+  "pt": "Por lo tanto, los primeros 90 días son para auditar la medición por país, acordar el estándar y lanzar los primeros experimentos con control.",
+  "ev": [
+   "tenpo-med",
+   "capitaria"
+  ]
+ },
+ "briefs_ejemplo": [
+  {
+   "q": "Cada país reporta las conversiones de la app distinto.",
+   "t": "Antes de comparar hay que medir igual.",
+   "base": "Comparabilidad = mismo evento × misma definición × misma atribución.",
+   "args": [
+    [
+     "Definir",
+     [
+      "Catálogo de eventos común",
+      "Nomenclatura de campañas"
+     ]
+    ],
+    [
+     "Controlar",
+     [
+      "Chequeos de calidad diarios",
+      "Alertas cuando un evento cae"
+     ]
+    ]
+   ],
+   "pt": "Por lo tanto: un estándar regional y una auditoría por país antes del próximo trimestre.",
+   "ev": [
+    "tenpo-med",
+    "capitaria"
+   ]
+  },
+  {
+   "q": "No sabemos si los push y emails suman ventas o solo se las atribuyen.",
+   "t": "Hay que medir incrementalidad, no solo atribución.",
+   "base": "Impacto = resultado del grupo expuesto − resultado del grupo de control.",
+   "args": [
+    [
+     "Diseñar",
+     [
+      "Grupo de control estable",
+      "Tamaño de muestra"
+     ]
+    ],
+    [
+     "Decidir",
+     [
+      "Escalar lo que suma",
+      "Cortar lo que no"
+     ]
+    ]
+   ],
+   "pt": "Por lo tanto: grupos de control en las principales campañas propias y una lectura mensual.",
+   "ev": [
+    "tenpo-med",
+    "yape"
+   ]
+  },
+  {
+   "q": "Las agencias reportan resultados con métricas distintas.",
+   "t": "El estándar lo pone la marca, no cada agencia.",
+   "base": "Gobierno = taxonomía común × fuente única × reglas de uso.",
+   "args": [
+    [
+     "Acordar",
+     [
+      "Métricas y definiciones",
+      "Nomenclatura obligatoria"
+     ]
+    ],
+    [
+     "Integrar",
+     [
+      "Data mart único",
+      "Tablero compartido"
+     ]
+    ]
+   ],
+   "pt": "Por lo tanto: un manual de medición para partners y un tablero único por país.",
+   "ev": [
+    "capitaria"
+   ]
+  }
+ ],
+ "chat": {
+  "saludo": "Hola. Preparé esta versión para el cargo de Martech & Growth Manager en Cencosud. Pregunta lo que quieras sobre la experiencia de Paul, o elige una pregunta abajo.",
+  "sugeridas": [
+   "¿Con qué MMP ha trabajado?",
+   "¿Cómo mide la incrementalidad?",
+   "¿Ha trabajado en gobierno de datos?",
+   "¿Tiene experiencia en retail?",
+   "¿Qué ha automatizado con IA?"
+  ]
+ },
+ "perfil_completo": {
+  "habilidades": [
+   {
+    "grupo": "Liderazgo",
+    "items": [
+     "coordinación entre áreas (Producto, Data, Tecnología, Ventas)",
+     "1 persona a cargo (operación y QA de Smart Campaign, Tenpo)"
+    ]
+   },
+   {
+    "grupo": "Canales",
+    "items": [
+     "Meta",
+     "Google Ads",
+     "TikTok",
+     "LinkedIn",
+     "Bing",
+     "DV360",
+     "CRM, push y email (CleverTap, HubSpot, Salesforce)",
+     "influencers",
+     "partners",
+     "ASO"
+    ]
+   },
+   {
+    "grupo": "Analítica",
+    "items": [
+     "SQL",
+     "BigQuery",
+     "Python",
+     "Excel",
+     "Power BI",
+     "Looker Studio",
+     "GA4",
+     "Singular (MMP)",
+     "deeplinks",
+     "SDK de CleverTap",
+     "nomenclatura UTM",
+     "atribución first touch"
+    ]
+   },
+   {
+    "grupo": "Experimentos",
+    "items": [
+     "A/B y holdout",
+     "grupos de control",
+     "incrementalidad e inferencia causal",
+     "propensión",
+     "K-means",
+     "Marketing Mix Modeling (proyecto de portafolio)"
+    ]
+   },
+   {
+    "grupo": "Operación e IA",
+    "items": [
+     "calendarios y briefs",
+     "coordinación de freelancers y partners",
+     "n8n",
+     "agentes de IA",
+     "Claude API",
+     "Gemini",
+     "APIs",
+     "deep links"
+    ]
+   }
+  ],
+  "formacion": [
+   {
+    "titulo": "Magíster en Marketing Digital",
+    "lugar": "Universidad de Chile",
+    "periodo": "2021–2023",
+    "detalle": "92/100 (nota 6,2/7) · Estadística, Data Analytics, Consumer Analytics"
+   },
+   {
+    "titulo": "Licenciatura en Comunicación",
+    "lugar": "Universidad Privada Boliviana",
+    "periodo": "2013–2018",
+    "detalle": "84/100"
+   }
+  ],
+  "certificaciones": [
+   "Meta Marketing Analytics Science (2024)",
+   "IBM Data Analytics Professional (2023)",
+   "Content Strategy · Colectivo 23 (2022)",
+   "Growth Hacking · Kurious (2021)",
+   "Professional Certified Marketer (PCM®) · American Marketing Association (en curso)"
+  ],
+  "idiomas": [
+   "Español nativo",
+   "Inglés B2 (TOEFL iBT 90)",
+   "Portugués intermedio"
+  ],
+  "referencias": [
+   {
+    "nombre": "Mauricio Rincón",
+    "cargo": "CRO",
+    "empresa": "Banco de Crédito de Bolivia",
+    "relacion": "",
+    "contacto": "En el CV en PDF"
+   },
+   {
+    "nombre": "Mauricio Rojas",
+    "cargo": "",
+    "empresa": "Yape (Perú)",
+    "relacion": "",
+    "contacto": "En el CV en PDF"
+   },
+   {
+    "nombre": "Rafael Hurtado",
+    "cargo": "",
+    "empresa": "Capitaria Latam",
+    "relacion": "",
+    "contacto": "En el CV en PDF"
+   }
+  ],
+  "experiencia": [
+   {
+    "periodo": "oct 2025 – hoy",
+    "cargo": "Growth Specialist, Martech",
+    "empresa": "TenpoBank (Credicorp)",
+    "resumen": "Smart Campaign: de un brief en Jira a una campaña en CleverTap con agentes de IA y aprobación humana. ~20% de las acciones de marketing automatizadas. Una persona a cargo que lo opera y hace QA."
+   },
+   {
+    "periodo": "feb 2024 – sep 2025",
+    "cargo": "Senior Paid Media Manager",
+    "empresa": "Capitaria Latam",
+    "resumen": "~USD 1M/año con metas en Meta, Google y LinkedIn para Perú, Uruguay, Chile y México. Ingresos +89% (+USD 1M); conversión lead a cliente de 0,30% a 0,67%."
+   },
+   {
+    "periodo": "may 2021 – feb 2024",
+    "cargo": "Business Specialist, Paid Media & Owned Channels",
+    "empresa": "Yape (Credicorp)",
+    "resumen": "Proyecto de revenue: ingreso mensual de pago de servicios de USD 40K a 140K, ~21K transacciones incrementales; cashback para MAU incremental; presupuesto de USD 1,3M al año con metas."
+   },
+   {
+    "periodo": "ene 2020 – may 2021",
+    "cargo": "Digital & Partnerships",
+    "empresa": "Fundación para el Periodismo · Bolivia Verifica",
+    "resumen": "Red de 50 medios; tráfico mensual de 20K a 500K; primer firmante boliviano de la red internacional de fact-checking de Poynter."
+   },
+   {
+    "periodo": "2018 – 2019",
+    "cargo": "Asistente de Marketing",
+    "empresa": "La Boliviana Ciacruz",
+    "resumen": "Asistente de marketing en una aseguradora en Bolivia."
+   }
+  ]
+ },
+ "carta_texto": "Dear team,\n\n¡Hey! Aquí Paul, un boliviano en Chile hace ya casi cinco años. Llegué por un magíster en la Universidad de Chile y mi estadía se alargó: el país resultó ser una sorpresa apasionante, y aquí terminé de formarme en lo que hoy hago.\n\nSoy growth marketer, con más de cinco años de trayectoria en fintech y banca, una formación amplia en marketing y canales, y un dominio profundo en data, growth y martech. Me desenvuelvo en la intersección entre negocio y tecnología, apoyándome en herramientas no-code, flujos automatizados e inteligencia artificial para fortalecer la operación de los equipos de marketing.\n\nHoy busco desafíos que me permitan liderar proyectos de impacto regional, integrando medición, datos y tecnología, y coordinando equipos y partners hacia objetivos comunes. Evolucionar las capacidades Martech de Cencosud responde precisamente a ese reto: exige estándares de medición claros, criterio analítico y la capacidad de convertir datos en decisiones de crecimiento.\n\nEn paralelo, me encuentro certificándome en distintas áreas que complementan mi experiencia y me acercan a mis objetivos profesionales, como el Professional Certified Marketer (PCM®) de la American Marketing Association.\n\nPara conocer mi trabajo con mayor detalle, preparé una versión interactiva de mi CV para este cargo. En ella encontrarán mis casos más relevantes, un video de presentación sobre por qué considero que mi perfil se ajusta a esta posición y un chat donde pueden plantear sus preguntas: https://etiennepaulandre-07.github.io/portafolios-postules/?v=v-cencosud-3b8e61d4\n\nQuedo atento a la posibilidad de conversar.\n\nBest,\nPaul E.\n+56 9 4620 8116 · etienne.paul.andre@gmail.com",
+ "guion_inputs": {
+  "hook": "Si un cliente compra en la app, la web y la tienda, ¿qué campaña lo movió de verdad?",
+  "idea_central": "la medición ordena, el negocio decide; el valor está en esa línea",
+  "cita_ficha": "Evolucionar las capacidades Martech, asegurando estándares de medición y gobierno de datos"
+ },
+ "video": {
+  "hook_nodos": [
+   "app",
+   "web",
+   "CRM",
+   "medios",
+   "audiencias"
+  ],
+  "lados": [
+   "MEDICIÓN",
+   "NEGOCIO"
+  ],
+  "evid_nodos": [
+   "eventos",
+   "atribución",
+   "grupo de control",
+   "activación"
+  ],
+  "evid_ok": "medido",
+  "evid_stack": "MMP · eventos · grupos de control · APIs",
+  "chips": [
+   "Apps",
+   "Web",
+   "CRM",
+   "Medios"
+  ],
+  "chip_meta": "Cencosud"
+ }
+}
