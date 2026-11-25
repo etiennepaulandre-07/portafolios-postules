@@ -1,0 +1,71 @@
+{
+ "generado": "2026-11-25T01:41:29.397Z",
+ "fuente": "pausas del audio",
+ "duracion_s": 50.980000000000004,
+ "escenas": [
+  {
+   "n": 1,
+   "rol": "hook",
+   "desde_s": 0.18,
+   "hasta_s": 7.37
+  },
+  {
+   "n": 2,
+   "rol": "idea",
+   "desde_s": 7.37,
+   "hasta_s": 11.76
+  },
+  {
+   "n": 3,
+   "rol": "premisa",
+   "desde_s": 11.76,
+   "hasta_s": 15.79
+  },
+  {
+   "n": 4,
+   "rol": "evidencia",
+   "desde_s": 15.79,
+   "hasta_s": 35.76
+  },
+  {
+   "n": 5,
+   "rol": "conclusion",
+   "desde_s": 35.76,
+   "hasta_s": 48.24
+  },
+  {
+   "n": 6,
+   "rol": "demo",
+   "desde_s": 48.24,
+   "hasta_s": 49.56
+  },
+  {
+   "n": 7,
+   "rol": "cafe",
+   "desde_s": 49.56,
+   "hasta_s": 50.68
+  }
+ ],
+ "clips": [
+  {
+   "id": "esc2-idea",
+   "tipo": "lipsync",
+   "foto": "frente",
+   "desde_s": 7.2700000000000005,
+   "hasta_s": 11.91
+  },
+  {
+   "id": "esc5-conclusion",
+   "tipo": "lipsync",
+   "foto": "frente",
+   "desde_s": 35.66,
+   "hasta_s": 48.39
+  },
+  {
+   "id": "esc7-cafe",
+   "tipo": "video",
+   "foto": "cafe",
+   "prompt": "He sits at a café table, glances at his watch, looks toward the door, then smiles at the camera and raises his coffee cup. Natural light, subtle handheld camera, cinematic, realistic."
+  }
+ ]
+}
