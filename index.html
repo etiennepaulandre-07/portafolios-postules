@@ -549,6 +549,48 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
       </div>
     </section>
 
+    <section id="sistemaSec">
+      <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización</span></div>
+      <div class="fl">
+        <div class="fl-cols">
+          <div class="fl-col"><div class="fl-n">01 Entrada</div>
+            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></svg><b id="fxEmp">La vacante</b></div><span id="fxCargo">Link de la oferta</span><span class="fl-sub">Pego el link de la oferta</span></div></div>
+          <div class="fl-col fl-mid"><div class="fl-n">02 Trigger</div>
+            <div class="fl-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>Orquestador</b><span>arranca el flujo</span></div></div>
+          <div class="fl-col"><div class="fl-n">03 Lectura</div>
+            <div class="fl-stack">
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><b>Requisitos</b></div><span>Qué pide el cargo</span></div>
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><b>Evidencia</b></div><span>Casos y cifras reales</span></div>
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M4 15h16M9 4v16M15 4v16"/></svg><b>Guion</b></div><span>Video de 1 minuto</span></div>
+            </div></div>
+          <div class="fl-col fl-mid"><div class="fl-n">04 Armado</div>
+            <div class="fl-c fl-agent"><b>Agente de IA</b><i>con mis datos y plantillas</i><span>Arma el CV, la carta, el video y esta página. Propone; no publica.</span></div></div>
+          <div class="fl-col"><div class="fl-n">05 Veredicto</div>
+            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><b>Mi aprobación</b></div>
+              <p class="fl-st"><em class="ok"></em><b>Aprobado</b> Se publica y salen los PDF</p>
+              <p class="fl-st"><em class="mid"></em><b>Corregir</b> Vuelve al borrador con mis cambios</p></div></div>
+        </div>
+        <div class="fl-out">
+          <div><b>CV y carta</b><span>PDF con QR a esta página</span></div>
+          <div><b>Video de 1 minuto</b><span>Con mi voz, montado al ritmo</span></div>
+          <div><b>Chat con evidencia</b><span>Responde solo con lo que hice</span></div>
+          <div><b>Agenda</b><span>Horarios libres y videollamada</span></div>
+        </div>
+        <div class="fl-k"><div><strong>6</strong>servicios conectados</div><div><strong>1</strong>aprobación humana</div><div><strong>20</strong>minutos para agendar</div></div>
+      </div>
+    </section>
+
+    <section class="callTop">
+      <div class="call">
+        <div>
+          <h2>¿Conversamos 20 minutos?</h2>
+          <p>Elige un horario libre en el calendario de Paul. Te llega la invitación con link de Meet a tu correo.</p>
+        </div>
+        <button class="cta-btn" id="callBtn" type="button">Ver horarios</button>
+        <div class="agenda" id="agenda" hidden></div>
+      </div>
+    </section>
+
     <section id="expSec">
       <div class="sec-h"><h2>Experiencia</h2><span class="label">desde 2018</span></div>
       <div id="expBox"><ol class="exp" id="exp"></ol></div>
@@ -599,47 +641,7 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
       </div>
     </section>
 
-    <section class="callTop">
-      <div class="call">
-        <div>
-          <h2>¿Conversamos 20 minutos?</h2>
-          <p>Elige un horario libre en el calendario de Paul. Te llega la invitación con link de Meet a tu correo.</p>
-        </div>
-        <button class="cta-btn" id="callBtn" type="button">Ver horarios</button>
-        <div class="agenda" id="agenda" hidden></div>
-      </div>
-    </section>
 
-    <section id="sistemaSec">
-      <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización</span></div>
-      <div class="fl">
-        <div class="fl-cols">
-          <div class="fl-col"><div class="fl-n">01 Entrada</div>
-            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></svg><b id="fxEmp">La vacante</b></div><span id="fxCargo">Link de la oferta</span><span class="fl-sub">Pego el link de la oferta</span></div></div>
-          <div class="fl-col fl-mid"><div class="fl-n">02 Trigger</div>
-            <div class="fl-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>Orquestador</b><span>arranca el flujo</span></div></div>
-          <div class="fl-col"><div class="fl-n">03 Lectura</div>
-            <div class="fl-stack">
-              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><b>Requisitos</b></div><span>Qué pide el cargo</span></div>
-              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><b>Evidencia</b></div><span>Casos y cifras reales</span></div>
-              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M4 15h16M9 4v16M15 4v16"/></svg><b>Guion</b></div><span>Video de 1 minuto</span></div>
-            </div></div>
-          <div class="fl-col fl-mid"><div class="fl-n">04 Armado</div>
-            <div class="fl-c fl-agent"><b>Agente de IA</b><i>con mis datos y plantillas</i><span>Arma el CV, la carta, el video y esta página. Propone; no publica.</span></div></div>
-          <div class="fl-col"><div class="fl-n">05 Veredicto</div>
-            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><b>Mi aprobación</b></div>
-              <p class="fl-st"><em class="ok"></em><b>Aprobado</b> Se publica y salen los PDF</p>
-              <p class="fl-st"><em class="mid"></em><b>Corregir</b> Vuelve al borrador con mis cambios</p></div></div>
-        </div>
-        <div class="fl-out">
-          <div><b>CV y carta</b><span>PDF con QR a esta página</span></div>
-          <div><b>Video de 1 minuto</b><span>Con mi voz, montado al ritmo</span></div>
-          <div><b>Chat con evidencia</b><span>Responde solo con lo que hice</span></div>
-          <div><b>Agenda</b><span>Horarios libres y videollamada</span></div>
-        </div>
-        <div class="fl-k"><div><strong>6</strong>servicios conectados</div><div><strong>1</strong>aprobación humana</div><div><strong>20</strong>minutos para agendar</div></div>
-      </div>
-    </section>
     <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
   </div>
 </div>
