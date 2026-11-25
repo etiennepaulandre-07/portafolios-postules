@@ -490,6 +490,17 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
 .f2 .spec dt:not(:first-child),.f2 .spec dd:not(:nth-child(2)){border-left:1px solid var(--line)}
 .f2 .spec dt:first-child,.f2 .spec dd:nth-child(2){padding-left:0}
 @media (max-width:820px){.f2 .spec dl{grid-auto-flow:row;grid-template-rows:none;grid-template-columns:auto 1fr}.f2 .spec dt,.f2 .spec dd{border-left:0!important;padding:8px 0;border-bottom:1px solid var(--line)}.f2 .spec dd{text-align:right}}
+
+/* v6 chat */
+.hero-chat{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:32px;align-items:stretch}
+.hc-h p{margin:8px 0 22px}
+.hc-l{display:block;font-size:13px;opacity:.6;margin-bottom:10px}
+.hc-h .sugs{display:flex;flex-direction:column;gap:8px;padding:0}
+.hc-h .sugs button{font-size:15px;text-align:left;padding:12px 16px;border-radius:10px;border:1px solid color-mix(in srgb,var(--bg) 22%,transparent);background:transparent;color:var(--bg);cursor:pointer}
+.hc-h .sugs button:hover{background:color-mix(in srgb,var(--bg) 8%,transparent);border-color:var(--bg)}
+.hero-chat .chat{height:400px;min-height:0;display:flex;flex-direction:column}
+.hero-chat .log{flex:1;min-height:0;max-height:none}
+@media (max-width:860px){.hero-chat{grid-template-columns:minmax(0,1fr)}.hero-chat .chat{height:400px}}
 </style>
 
 <div class="wrap">
@@ -554,11 +565,10 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
     </section>
 
     <section id="chatSec" class="hero-chat">
-      <div class="hc-h"><h2>Pregúntale a este CV</h2><p>Una IA que responde solo con la evidencia de Paul. Si algo no está, lo dice.</p></div>
+      <div class="hc-h"><h2>Pregúntale a este CV</h2><p>Una IA que responde solo con la evidencia de Paul. Si algo no está, lo dice.</p><span class="hc-l">Empieza por una de estas</span><div class="sugs" id="sugs"></div></div>
       <aside class="chat" aria-label="Chat con el CV">
         <div class="chat-h"><h2>Pregúntale a este CV</h2><p>Responde solo con la evidencia de Paul. Si no la hay, lo dice.</p></div>
         <div class="log" id="log" aria-live="polite"></div>
-        <div class="sugs" id="sugs"></div>
         <form class="ask" id="askForm">
           <input id="askInput" placeholder="Pregunta sobre la experiencia de Paul" maxlength="300" autocomplete="off" aria-label="Tu pregunta">
           <button type="submit">Enviar</button>
@@ -775,7 +785,7 @@ window.CVV_INIT = function(){
   }
   const CH = V.chat || {};
   (CH.sugeridas || []).forEach(q => { const b = el('button', null, q); b.type = 'button'; b.onclick = () => answer(q); $('#sugs').appendChild(b); });
-  add('bot', CH.saludo || ('Hola. Preparé esta versión para ' + (V.cargo || 'el cargo') + ' en ' + (V.empresa || 'tu empresa') + '. Pregunta lo que quieras.'));
+  add('bot', (CH.saludo || '').replace(/ o elige una pregunta abajo\./, ' o parte por una de las preguntas sugeridas.') || ('Hola. Preparé esta versión para ' + (V.cargo || 'el cargo') + ' en ' + (V.empresa || 'tu empresa') + '. Pregunta lo que quieras.'));
   $('#askForm').addEventListener('submit', e => { e.preventDefault(); const v = $('#askInput').value.trim(); if (!v) return; $('#askInput').value = ''; answer(v); });
 
   // ---------- video: guion como vista previa ----------
