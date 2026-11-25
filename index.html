@@ -373,6 +373,49 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
 .fx-k strong{display:block;font-family:var(--f-display);font-size:30px;color:var(--ok);font-variant-numeric:tabular-nums}
 @container (max-width:860px){.fx-row{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.fx-col:nth-child(4){border-left:0;padding-left:0}.fx-col:nth-child(1){padding-left:0}.fx-out{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @container (max-width:560px){.fx-row,.fx-out{grid-template-columns:minmax(0,1fr)}.fx-col,.fx-col:nth-child(n){padding:0;border-left:0}.fx-c.pill,.fx-c.hi{margin:0}}
+
+/* v3: estructura tipo CV */
+#porqueSec .razones{margin-block:0 18px}
+.dem{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--surface)}
+.dem h3{font-family:var(--f-display);font-size:19px;margin:0}
+.dem-n{margin:4px 0 14px;font-size:13.5px;color:var(--muted)}
+.pr{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:stretch}
+#chatSec .chat{position:static;max-height:none;height:560px}
+#chatSec .chat-h{display:none}
+.pr-brief{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--surface)}
+.pr-brief h3{font-family:var(--f-display);font-size:19px;margin:0}
+.pr-n{margin:4px 0 12px;font-size:13.5px;color:var(--muted)}
+.pr-brief .brief{display:block}
+.pr-brief .plan{margin-top:14px}
+.port{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;margin-bottom:12px}
+.port b{display:block;font-family:var(--f-display);font-size:19px}
+.port span span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.port i{font-style:normal;font-weight:600;white-space:nowrap;border:1px solid var(--ink);border-radius:999px;padding:8px 16px}
+.port:hover i{background:var(--ink);color:var(--bg)}
+.det{border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:12px}
+.det>summary{cursor:pointer;padding:16px 20px;font-family:var(--f-display);font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.det>summary::-webkit-details-marker{display:none}
+.det>summary::after{content:"+";font-family:var(--f-mono);color:var(--muted)}
+.det[open]>summary::after{content:"–"}
+.det>:not(summary){margin:0 20px 18px}
+.det .tbl{margin:0 20px 18px}
+.fx{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px}
+.fx-intro{margin:0 0 26px;max-width:62ch;color:var(--muted)}
+.fx-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
+.fx-steps::before{content:"";position:absolute;left:14px;right:14px;top:14px;height:1px;background:var(--line)}
+.fx-steps li{position:relative;padding-right:16px}
+.fx-steps b{display:block;font-family:var(--f-display);font-size:16px;line-height:1.25;margin-top:14px}
+.fx-steps li>span:not(.fx-i){display:block;font-size:13.5px;color:var(--muted);line-height:1.4;margin-top:4px}
+.fx-i{position:relative;display:inline-flex;align-items:center;justify-content:center;width:29px;height:29px;border-radius:50%;background:var(--surface);border:1px solid var(--ink);font-family:var(--f-mono);font-size:12px}
+.fx-h .fx-i{background:var(--ink);color:var(--bg)}
+.fx-out{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:28px}
+.fx-out div{background:var(--bg);padding:14px 16px}
+.fx-out b{display:block;font-size:15px}
+.fx-out span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.fx-k{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap}
+.fx-k div{font-size:13px;color:var(--muted)}
+.fx-k strong{display:block;font-family:var(--f-display);font-size:30px;color:var(--ink);font-variant-numeric:tabular-nums}
+@media (max-width:920px){.pr{grid-template-columns:minmax(0,1fr)}.fx-steps{grid-template-columns:minmax(0,1fr);gap:18px}.fx-steps::before{left:14px;right:auto;top:14px;bottom:14px;width:1px;height:auto}.fx-steps li{display:grid;grid-template-columns:29px minmax(0,1fr);column-gap:14px}.fx-steps b{margin-top:4px}.fx-steps li>span:not(.fx-i){grid-column:2}.fx-out{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 
 <div class="wrap">
@@ -401,20 +444,7 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
       </aside>
     </header>
 
-    <section class="callTop">
-      <div class="call">
-        <div>
-          <h2>¿Conversamos 20 minutos?</h2>
-          <p>Elige un horario libre en el calendario de Paul. Te llega la invitación con link de Meet a tu correo.</p>
-        </div>
-        <button class="cta-btn" id="callBtn" type="button">Ver horarios</button>
-        <div class="agenda" id="agenda" hidden></div>
-      </div>
-    </section>
-
-    <div class="razones" id="razones"></div>
-
-    <section>
+    <section id="videoSec">
       <div class="sec-h"><h2 id="vidTit">Paul en 45 segundos</h2><span class="label" id="vidLbl"></span></div>
       <div class="video">
         <div>
@@ -436,77 +466,28 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
       </div>
     </section>
 
-    <section id="demandaSec">
-      <div class="sec-h"><h2 id="demTit"></h2><span class="label">hipótesis desde fuera · a validar con el equipo</span></div>
-      <div class="funnel" id="funnel"></div>
+    <section id="expSec">
+      <div class="sec-h"><h2>Experiencia</h2><span class="label">desde 2018</span></div>
+      <div id="expBox"><ol class="exp" id="exp"></ol></div>
     </section>
 
-    <section id="brief">
-      <div class="sec-h"><h2>Pruébame: dame un brief y te muestro cómo lo armaría</h2><span class="label">respuesta primero · 2 argumentos · primer paso</span></div>
-      <div class="brief">
-        <form class="brief-in" id="briefForm">
-          <label class="label" for="briefInput">Tu brief, en una o dos frases</label>
-          <textarea id="briefInput"></textarea>
-          <div class="ex" id="briefEx"></div>
-          <button class="go" type="submit">Armar el caso</button>
-        </form>
-        <div class="plan" id="plan" aria-live="polite"></div>
+    <section>
+      <div class="sec-h"><h2>Casos relevantes para este cargo</h2><span class="label">ordenados por ajuste</span></div>
+      <div class="casos" id="casos"></div>
+    </section>
+
+    <section id="porqueSec">
+      <div class="sec-h"><h2>Por qué yo</h2></div>
+      <div class="razones" id="razones"></div>
+      <div id="demandaSec" class="dem">
+        <h3 id="demTit"></h3><p class="dem-n">Hipótesis desde fuera, a validar con el equipo.</p>
+        <div class="funnel" id="funnel"></div>
       </div>
     </section>
 
-    <div class="body">
-      <main>
-        <section>
-          <div class="sec-h"><h2>Lo que pide el cargo y dónde está la evidencia</h2><span class="label" id="matLbl"></span></div>
-          <div class="tbl"><table><thead><tr><th>Requisito de la ficha</th><th>Evidencia</th><th>Ajuste</th></tr></thead><tbody id="matriz"></tbody></table></div>
-        </section>
-        <section>
-          <div class="sec-h"><h2>Casos relevantes para este cargo</h2><span class="label">ordenados por ajuste</span></div>
-          <div class="casos" id="casos"></div>
-        </section>
-        <section id="perfilSec">
-          <div class="sec-h"><h2>Perfil completo</h2><span class="label">habilidades · formación · referencias</span></div>
-          <div class="perfil">
-            <div class="pcol"><h3 class="label">Habilidades</h3><dl class="skills" id="skills"></dl></div>
-            <div class="pcol"><h3 class="label">Formación</h3><ul class="plist" id="formacion"></ul>
-              <h3 class="label" id="certH">Certificaciones</h3><ul class="plist" id="certs"></ul>
-              <h3 class="label" id="idiH">Idiomas</h3><p class="pidi" id="idiomas"></p></div>
-          </div>
-          <div id="refsBox"><h3 class="label">Referencias</h3><div class="refs" id="refs"></div></div>
-          <div id="expBox"><h3 class="label">Experiencia</h3><ol class="exp" id="exp"></ol></div>
-        </section>
-        <section id="sistemaSec">
-          <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización · stack tecnológico</span></div>
-          <div class="fx">
-            <p class="fx-intro">Esta página es un ejemplo de cómo automatizo: un stack tecnológico propio que conecta <b>correo, calendario, almacenamiento en la nube, un sitio web, síntesis de voz y un agente de IA</b> para que cada CV sea personalizado, muestre los casos de éxito que importan para el cargo, permita consultar los datos de cada punto y haga fácil agendar la siguiente conversación.</p>
-            <div class="fx-row">
-              <div class="fx-col"><div class="fx-n">01 Entrada</div>
-                <div class="fx-c"><b id="fxEmp">La vacante</b><span>Link de la oferta</span><span id="fxCargo"></span></div></div>
-              <div class="fx-col"><div class="fx-n">02 Trigger</div>
-                <div class="fx-c pill"><b>Orquestador</b><span>Detecta la vacante y arranca el flujo</span></div></div>
-              <div class="fx-col"><div class="fx-n">03 Lectura</div>
-                <div class="fx-c"><b>Requisitos</b><span>Qué pide el cargo</span></div>
-                <div class="fx-c"><b>Evidencia</b><span>Casos y cifras reales</span></div>
-                <div class="fx-c"><b>Guion</b><span>Video de 1 minuto</span></div></div>
-              <div class="fx-col"><div class="fx-n">04 Armado</div>
-                <div class="fx-c hi"><b>Stack + IA</b><i>Plantillas, datos y un agente</i><span>El stack arma el CV, la carta y esta página con mis datos; el agente de IA propone borradores que yo edito.</span></div></div>
-              <div class="fx-col"><div class="fx-n">05 Aprobación</div>
-                <div class="fx-c"><b>Panel de revisión</b><span>Me llega un correo, reviso cada pieza, la corrijo y apruebo. Recién ahí se publica y se generan los PDF.</span></div></div>
-            </div>
-            <div class="fx-out" aria-label="Lo que sale">
-              <div class="fx-c"><b>CV y carta en PDF</b><span>Con QR a esta página</span></div>
-              <div class="fx-c"><b>Video con mi voz</b><span>Voz clonada + montaje</span></div>
-              <div class="fx-c"><b>Chat con la evidencia</b><span>Pregunta por cualquier punto</span></div>
-              <div class="fx-c"><b>Agenda</b><span>Horarios libres + videollamada</span></div>
-            </div>
-            <div class="fx-foot">
-              <p>Un link de vacante, <em>un CV hecho para el cargo.</em></p>
-              <div class="fx-k"><div><strong>6</strong>servicios<br>conectados</div><div><strong>1</strong>aprobación<br>humana</div><div><strong>20</strong>min para<br>agendar</div></div>
-            </div>
-          </div>
-        </section>
-        <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
-      </main>
+    <section id="chatSec">
+      <div class="sec-h"><h2>Pregúntale a este CV</h2><span class="label">responde solo con mi evidencia</span></div>
+      <div class="pr">
       <aside class="chat" aria-label="Chat con el CV">
         <div class="chat-h"><h2>Pregúntale a este CV</h2><p>Responde solo con la evidencia de Paul. Si no la hay, lo dice.</p></div>
         <div class="log" id="log" aria-live="polite"></div>
@@ -516,7 +497,71 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
           <button type="submit">Enviar</button>
         </form>
       </aside>
-    </div>
+        <div id="brief" class="pr-brief">
+          <h3>Pruébame con un brief</h3>
+          <p class="pr-n">Cuéntame un desafío en una o dos frases y te muestro cómo lo armaría.</p>
+      <div class="brief">
+        <form class="brief-in" id="briefForm">
+          <label class="label" for="briefInput">Tu brief, en una o dos frases</label>
+          <textarea id="briefInput"></textarea>
+          <div class="ex" id="briefEx"></div>
+          <button class="go" type="submit">Armar el caso</button>
+        </form>
+        <div class="plan" id="plan" aria-live="polite"></div>
+      </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portSec">
+      <div class="sec-h"><h2>Portafolio y perfil completo</h2></div>
+      <a class="port" id="portLink" target="_blank" rel="noopener"><span><b>Portafolio Martech</b><span>Seis casos de martech, growth analytics e IA, con el detalle de cada proyecto.</span></span><i>Abrir</i></a>
+      <details class="det"><summary>Lo que pide el cargo y dónde está la evidencia <span class="label" id="matLbl"></span></summary>
+        <div class="tbl"><table><thead><tr><th>Requisito de la ficha</th><th>Evidencia</th><th>Ajuste</th></tr></thead><tbody id="matriz"></tbody></table></div>
+      </details>
+      <details class="det" id="perfilSec"><summary>Habilidades, formación y referencias</summary>
+          <div class="perfil">
+            <div class="pcol"><h3 class="label">Habilidades</h3><dl class="skills" id="skills"></dl></div>
+            <div class="pcol"><h3 class="label">Formación</h3><ul class="plist" id="formacion"></ul>
+              <h3 class="label" id="certH">Certificaciones</h3><ul class="plist" id="certs"></ul>
+              <h3 class="label" id="idiH">Idiomas</h3><p class="pidi" id="idiomas"></p></div>
+          </div>
+          <div id="refsBox"><h3 class="label">Referencias</h3><div class="refs" id="refs"></div></div>
+      </details>
+    </section>
+
+    <section class="callTop">
+      <div class="call">
+        <div>
+          <h2>¿Conversamos 20 minutos?</h2>
+          <p>Elige un horario libre en el calendario de Paul. Te llega la invitación con link de Meet a tu correo.</p>
+        </div>
+        <button class="cta-btn" id="callBtn" type="button">Ver horarios</button>
+        <div class="agenda" id="agenda" hidden></div>
+      </div>
+    </section>
+
+    <section id="sistemaSec">
+      <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización</span></div>
+      <div class="fx">
+        <p class="fx-intro">Un stack tecnológico propio conecta correo, calendario, almacenamiento en la nube, un sitio web, síntesis de voz y un agente de IA. Yo apruebo cada pieza antes de que se publique.</p>
+        <ol class="fx-steps">
+          <li><span class="fx-i">1</span><b id="fxEmp">La vacante</b><span id="fxCargo">Link de la oferta</span></li>
+          <li><span class="fx-i">2</span><b>Lectura</b><span>Requisitos del cargo y evidencia real: casos y cifras</span></li>
+          <li><span class="fx-i">3</span><b>Armado con IA</b><span>CV, carta, guion y esta página, desde mis datos</span></li>
+          <li class="fx-h"><span class="fx-i">4</span><b>Mi aprobación</b><span>Reviso y corrijo cada pieza en un panel</span></li>
+          <li><span class="fx-i">5</span><b>Publicación</b><span>Voz, montaje del video y PDF con QR</span></li>
+        </ol>
+        <div class="fx-out">
+          <div><b>CV y carta</b><span>PDF con QR a esta página</span></div>
+          <div><b>Video de 1 minuto</b><span>Con mi voz, montado al ritmo</span></div>
+          <div><b>Chat con evidencia</b><span>Responde solo con lo que hice</span></div>
+          <div><b>Agenda</b><span>Horarios libres y videollamada</span></div>
+        </div>
+        <div class="fx-k"><div><strong>6</strong>servicios conectados</div><div><strong>1</strong>aprobación humana</div><div><strong>20</strong>minutos para agendar</div></div>
+      </div>
+    </section>
+    <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
   </div>
 </div>
 
@@ -547,6 +592,7 @@ window.CVV_INIT = function(){
     .forEach(([k, f]) => { if (C[k]) $('#contacto').appendChild(f(C[k])); });
   $('#desc').textContent = V.descripcion || V.perfil || '';
   // botones del encabezado: desplazan dentro de la página (sin anclas, que fallan dentro del iframe de Google)
+  { const pl = document.getElementById('portLink'), pu = (V.contacto || {}).portafolio; if (pu) pl.href = pu; else pl.hidden = true; }
   const ir = n => n && n.scrollIntoView({ behavior: 'smooth', block: 'start' });
   document.querySelectorAll('[data-ir]').forEach(b => b.addEventListener('click', () => {
     const k = b.dataset.ir;
@@ -592,7 +638,7 @@ window.CVV_INIT = function(){
     if (r.relacion) d.appendChild(el('span', null, ' · ' + r.relacion)); if (r.cita) d.appendChild(el('q', null, r.cita));
     if (r.contacto) d.appendChild(el('span', null, (r.cita ? '' : ' · ') + 'Contacto: ' + r.contacto)); $('#refs').appendChild(d); });
   const X = P.experiencia || [];
-  if (!X.length) $('#expBox').hidden = true;
+  if (!X.length) $('#expSec').hidden = true;
   X.forEach(x => { const li = el('li'); li.appendChild(el('span', 'per', x.periodo)); const b = el('div'); b.append(el('b', null, x.cargo + ' · ' + x.empresa), el('p', null, x.resumen)); li.appendChild(b); $('#exp').appendChild(li); });
   if (!P.habilidades && !P.formacion && !R.length && !X.length) $('#perfilSec').hidden = true;
 
