@@ -17,7 +17,7 @@
  "hilo": {
   "tension": "Escalar el martech en varios países: el desafío es que cada plataforma mida lo mismo, con datos confiables, y que eso se convierta en decisiones de crecimiento.",
   "transformacion": "Estándares de medición comunes, datos gobernados y campañas medidas contra control, con la operación automatizada donde aporta.",
-  "prueba": "Tenpo: atribución con Singular, taxonomía de canales propios e incrementalidad con grupos de control; Yape: ~21K transacciones incrementales medidas contra control.",
+  "prueba": "Tenpo: atribución con Singular, taxonomía de canales propios e incrementalidad con grupos de control; Yape: facturación mensual de USD 40K a 140K en 6 meses, con propensión y experimentos causales con confianza mayor a 95%.",
   "puente": "En Cencosud ordenaría la medición por país y plataforma con un estándar común, y mediría cada campaña contra control antes de escalarla.",
   "frase_firma": "la medición ordena, el negocio decide"
  },
@@ -66,12 +66,13 @@
   {
    "id": "yape",
    "empresa": "Yape",
-   "titulo": "Audiencias y experimentos con control",
-   "resumen": "200K usuarios segmentados con propensión y 8 clusters; experimentos con grupo de control por cluster en push, retargeting pagado y combinados. El ingreso mensual de pago de servicios pasó de USD 40K a 140K.",
+   "titulo": "Facturación con propensión e inferencia causal",
+   "resumen": "Llevamos la facturación mensual de pago de servicios de USD 40K a 140K en 6 meses: 200K usuarios segmentados con modelos de propensión y 8 clusters, y experimentos por canal (push, retargeting pagado y combinados) con grupo de control e inferencia causal, con nivel de confianza mayor a 95%.",
    "cifras": [
+    "facturación mensual de USD 40K a 140K en 6 meses",
+    "experimentos con nivel de confianza mayor a 95%",
     "~21K transacciones incrementales",
-    "200K usuarios segmentados",
-    "ingreso mensual de USD 40K a 140K"
+    "200K usuarios segmentados"
    ],
    "periodo": "2021–2024",
    "eje": "Audiencias",
@@ -81,8 +82,8 @@
     "CRM"
    ],
    "metrica": {
-    "valor": "~21K",
-    "que": "transacciones incrementales medidas contra control"
+    "valor": "USD 40K → 140K",
+    "que": "facturación mensual en 6 meses"
    }
   },
   {
@@ -206,7 +207,7 @@
     "n": 2,
     "rol": "idea",
     "inicio_s": 9,
-    "fin_s": 17.5,
+    "fin_s": 17,
     "locucion": "Postulo a Martech and Growth Manager en Cencosud con una idea: la medición ordena, el negocio decide; el valor está en esa línea.",
     "en_pantalla": "La medición ordena. El negocio decide.",
     "visual": "Paul a cámara; la línea lo cruza",
@@ -217,9 +218,9 @@
    {
     "n": 3,
     "rol": "premisa",
-    "inicio_s": 17.5,
-    "fin_s": 25,
-    "locucion": "El cargo pide estándares de medición, datos gobernados y audiencias propias, en varios países y plataformas a la vez.",
+    "inicio_s": 17,
+    "fin_s": 22,
+    "locucion": "El cargo pide estándares de medición, datos gobernados y audiencias propias en varios países.",
     "en_pantalla": "“Estándares de medición y gobierno de datos…”",
     "visual": "La cita de la ficha se escribe sola",
     "fuente": [
@@ -229,10 +230,10 @@
    {
     "n": 4,
     "rol": "evidencia",
-    "inicio_s": 25,
-    "fin_s": 35,
-    "locucion": "En Tenpo atribuyo campañas con un MMP, ordeno eventos en una taxonomía y mido incrementalidad con control. En Yape, los experimentos con control sumaron unas 21 mil transacciones incrementales.",
-    "en_pantalla": "MMP · Taxonomía · Grupo de control",
+    "inicio_s": 22,
+    "fin_s": 34.5,
+    "locucion": "En Tenpo atribuyo con un MMP y mido incrementalidad con control. En Yape llevamos la facturación mensual de 40 a 140 mil dólares en 6 meses, con modelos de propensión y experimentos causales al 95% de confianza.",
+    "en_pantalla": "MMP · Propensión · Inferencia causal",
     "visual": "Fuentes → estándar → experimento con control",
     "fuente": [
      "tenpo-med",
@@ -242,8 +243,8 @@
    {
     "n": 5,
     "rol": "conclusion",
-    "inicio_s": 35,
-    "fin_s": 42,
+    "inicio_s": 34.5,
+    "fin_s": 40.5,
     "locucion": "Por eso puedo aportar un estándar que todos los países usen, y crecimiento que se puede probar.",
     "en_pantalla": "Un estándar · Crecimiento probado",
     "visual": "Paul a cámara; la línea se vuelve borde suave",
@@ -254,9 +255,9 @@
    {
     "n": 6,
     "rol": "demo",
-    "inicio_s": 42,
-    "fin_s": 51,
-    "locucion": "Antes de irse, en esta página pueden revisar mis casos, preguntarle a la IA sobre mi experiencia y agendar un café conmigo.",
+    "inicio_s": 40.5,
+    "fin_s": 48,
+    "locucion": "Antes de irse, en esta página pueden revisar mis casos, preguntarle a la IA y agendar un café conmigo.",
     "en_pantalla": "Casos · Pregúntale a la IA · Agenda un café",
     "visual": "Grabación real del CV interactivo",
     "fuente": [
@@ -266,8 +267,8 @@
    {
     "n": 7,
     "rol": "cafe",
-    "inicio_s": 51,
-    "fin_s": 58,
+    "inicio_s": 48,
+    "fin_s": 55.5,
     "locucion": "Yo ya pedí el mío… ¿agendamos el suyo?",
     "en_pantalla": "Agendar 20 min →",
     "visual": "Paul en un café esperando, mira el reloj, sonríe y levanta la taza",
@@ -293,7 +294,9 @@
   "25,4",
   "32,4",
   "4",
-  "8"
+  "8",
+  "6",
+  "95"
  ],
  "ids_permitidos": [
   "sistema",
@@ -306,7 +309,9 @@
  ],
  "notas_cifras": {
   "20": "Smart Campaign 20%; llamada de 20 minutos",
-  "4": "4 mercados en Capitaria"
+  "4": "4 mercados en Capitaria",
+  "6": "6 meses (Yape, dicho por Paul)",
+  "95": "nivel de confianza >95% en experimentos (Yape)"
  },
  "ficha_candidato": [
   [
@@ -334,7 +339,7 @@
   {
    "eje": "Medición",
    "titulo": "Cada campaña medida contra control",
-   "texto": "En Tenpo mido incrementalidad con grupos de control y modelos incrementales en canales propios; en Yape, ~21K transacciones incrementales."
+   "texto": "En Tenpo mido incrementalidad con grupos de control y modelos incrementales en canales propios; en Yape llevamos la facturación mensual de USD 40K a 140K en 6 meses con experimentos causales (confianza mayor a 95%)."
   },
   {
    "eje": "Datos",
