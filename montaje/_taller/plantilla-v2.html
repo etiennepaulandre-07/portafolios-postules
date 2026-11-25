@@ -78,26 +78,31 @@ const S={
   if(tV&&t>=tV)['CL','AR','PE','CO','BR','UY'].forEach((p,j)=>{const q=pop(t,tV+j*0.09,0.3);x.save();x.translate(140+j*120,575);x.scale(q,q);x.beginPath();x.arc(0,0,44,0,7);x.strokeStyle=TINTA;x.lineWidth=3;x.stroke();x.restore();tx(p,140+j*120,587,{size:32,w:700,col:TINTA,align:'center',al:q})});
   capt(t,i,690)},
  evidencia(t,e,i){bg(DASH);x.save();x.strokeStyle='rgba(129,150,255,.07)';x.lineWidth=1;for(let g=0;g<W;g+=40){x.beginPath();x.moveTo(g,0);x.lineTo(g,H);x.stroke()}for(let g=0;g<H;g+=40){x.beginPath();x.moveTo(0,g);x.lineTo(W,g);x.stroke()}x.restore();
-  const tO=at(i,/^ordeno/),tMi=at(i,/^mido/),tY=at(i,/^yape/),tN=at(i,/^21/)||at(i,/^veinti/),tTr=at(i,/^transacciones/);
-  const sl=t0=>{const q=E((t-t0)/0.22);x.translate((1-q)*70,0);x.globalAlpha=q};
+  const tO=at(i,/^ordeno/),tMi=at(i,/^mido/),tY=at(i,/^yape/);
+  const fases=[['mmp',e.a],['tax',tO],['inc',tMi],['yape',tY]].filter(f=>f[1]!=null);const fz=fases.filter(f=>t>=f[1]-0.05).pop()||fases[0],t0=fz[1];
+  const sl=q0=>{const q=E((t-q0)/0.22);x.translate((1-q)*70,0);x.globalAlpha=q};
   x.save();
-  if(t<tO){sl(e.a);tx('Atribución con MMP',90,110,{size:46,w:800});const src=['Meta','Google','TikTok','Email'],mx=650,my=380;
+  if(fz[0]==='mmp'){sl(e.a);tx('Atribución con MMP',90,110,{size:46,w:800});const src=['Meta','Google','TikTok','Email'],mx=650,my=380;
    src.forEach((s,j)=>{const Y=210+j*105,q=E((t-e.a-0.2-j*0.12)/0.3);x.globalAlpha=q;rr(90,Y,190,64,12,'#16204a','#33437f',2);tx(s,185,Y+42,{size:26,f:'Grot',w:600,align:'center'});
     x.strokeStyle='rgba(242,193,78,.55)';x.lineWidth=2;x.beginPath();x.moveTo(280,Y+32);x.bezierCurveTo(470,Y+32,470,my,mx-70,my);x.stroke();
     const f=((t*0.9+j*0.25)%1);const bx=Math.pow(1-f,3)*280+3*Math.pow(1-f,2)*f*470+3*(1-f)*f*f*470+f*f*f*(mx-70),by=Math.pow(1-f,3)*(Y+32)+3*Math.pow(1-f,2)*f*(Y+32)+3*(1-f)*f*f*my+f*f*f*my;x.fillStyle=AMA;x.beginPath();x.arc(bx,by,6,0,7);x.fill()});
    x.globalAlpha=1;const p=pop(t,at(i,/^mmp/)||e.a+1,0.35);x.save();x.translate(mx,my);x.scale(p,p);x.beginPath();x.arc(0,0,70,0,7);x.fillStyle=AMA;x.fill();x.restore();tx('MMP',mx,my+14,{size:38,w:800,col:TINTA,align:'center',al:p});
    [['instalación',300],['compra',460]].forEach(([s,Y],j)=>{x.globalAlpha=E((t-e.a-1.2-j*0.2)/0.3);x.strokeStyle=AMA;x.lineWidth=2;x.beginPath();x.moveTo(mx+70,my);x.lineTo(930,Y+30);x.stroke();rr(930,Y,250,64,32,null,AMA,2);tx(s,1055,Y+42,{size:26,f:'Grot',w:600,col:AMA,align:'center'})});}
-  else if(t<tMi){sl(tO);tx('Taxonomía de eventos',90,110,{size:46,w:800});const rows=[['compra_completada','Growth'],['carrito_agregado','Producto'],['app_abierta','Producto'],['deeplink_abierto','CRM'],['cupon_canjeado','Growth']];
+  else if(fz[0]==='tax'){sl(tO);tx('Taxonomía de eventos',90,110,{size:46,w:800});const rows=[['compra_completada','Growth'],['carrito_agregado','Producto'],['app_abierta','Producto'],['deeplink_abierto','CRM'],['cupon_canjeado','Growth']];
    tx('evento',110,190,{size:20,f:'Grot',w:500,col:MUT});tx('dueño',640,190,{size:20,f:'Grot',w:500,col:MUT});tx('estado',920,190,{size:20,f:'Grot',w:500,col:MUT});
-   rows.forEach(([ev,du],j)=>{const t0=tO+0.1+j*0.12,Y=212+j*78;x.globalAlpha=E((t-t0)/0.25);rr(90,Y,1100,64,10,'#121b40');tx(ev,110,Y+42,{size:27,f:'Grot',w:500});tx(du,640,Y+42,{size:27,f:'Grot',w:500,col:'#c7cde0'});
+   rows.forEach(([ev,du],j)=>{const q0=tO+0.1+j*0.12,Y=212+j*78;x.globalAlpha=E((t-q0)/0.25);rr(90,Y,1100,64,10,'#121b40');tx(ev,110,Y+42,{size:27,f:'Grot',w:500});tx(du,640,Y+42,{size:27,f:'Grot',w:500,col:'#c7cde0'});
     const ok=t>=tO+0.9+j*0.16;rr(920,Y+12,160,40,20,ok?'rgba(34,192,122,.18)':'rgba(255,91,69,.16)');tx(ok?'definido':'sin dueño',1000,Y+40,{size:21,f:'Grot',w:600,col:ok?VERDE:ROJO,align:'center'})})}
-  else if(t<tY){sl(tMi);tx('Incrementalidad con grupo de control',90,110,{size:46,w:800});const base=520,q=E((t-tMi-0.15)/0.7);
+  else if(fz[0]==='inc'){sl(tMi);tx('Incrementalidad con grupo de control',90,110,{size:46,w:800});const base=520,q=E((t-tMi-0.15)/0.7);
    [['con campaña',300,AMA,330],['control',210,'#5a6aa8',640]].forEach(([s,h,col,X])=>{const hh=h*q;rr(X,base-hh,190,hh,8,col);tx(s,X+95,base+40,{size:26,f:'Grot',w:600,align:'center',col:'#c7cde0'})});
    const d=E((t-tMi-0.9)/0.35);if(d>0){x.globalAlpha=d;x.strokeStyle=BLANCO;x.lineWidth=2;x.setLineDash([6,6]);x.beginPath();x.moveTo(520,base-300);x.lineTo(900,base-300);x.moveTo(830,base-210);x.lineTo(900,base-210);x.stroke();x.setLineDash([]);
     x.beginPath();x.moveTo(890,base-300);x.lineTo(890,base-210);x.stroke();tx('incremental',915,base-245,{size:34,w:800,col:AMA,al:d})}}
-  else{sl(tY);tx('En Yape',W/2,170,{size:34,f:'Grot',w:500,col:'#c7cde0',align:'center'});const v=tN?Math.round(21000*E((t-tN)/0.9)):0;
-   tx(v.toLocaleString('es-CL'),W/2,420,{size:230,w:800,col:AMA,align:'center',track:-6,sc:tN&&t>=tN?Math.min(1,0.9+0.1*back((t-tN)/0.3)):0.9});
-   tx('transacciones incrementales',W/2,500,{size:46,w:600,align:'center',al:tTr?E((t-tTr)/0.3):0})}
+  else{sl(tY);const t40=at(i,/^40/),t140=at(i,/^140/),t6=at(i,/^6$/),tP=at(i,/^propensi/),tC=at(i,/^causal/),t95=at(i,/^95/);
+   tx('Yape · facturación mensual',90,110,{size:34,f:'Grot',w:500,col:'#c7cde0'});
+   const v=t140&&t>=t140?Math.round(L(40,140,(t-t140)/0.9)):40;
+   tx('USD '+v+'K',84,300,{size:190,w:800,col:AMA,track:-6,sc:pop(t,at(i,/^facturaci/)||t40,0.3)});
+   if(t140&&t>=t140){const q=E((t-t140)/0.9);x.globalAlpha=1;x.strokeStyle='rgba(242,193,78,.35)';x.lineWidth=4;x.beginPath();x.moveTo(90,345);x.lineTo(90+L(0,1000,q),345);x.stroke();tx('desde USD 40K',90,385,{size:26,f:'Grot',w:500,col:'#c7cde0',al:q})}
+   if(t6&&t>=t6)tx('en 6 meses',1090,400,{size:64,f:'SerifIt',w:400,align:'right',col:BLANCO,sc:pop(t,t6,0.3)});
+   [['modelos de propensión',tP],['experimentos causales',tC],['confianza > 95%',t95]].forEach(([s2,q0],j)=>{if(q0==null||t<q0)return;const p=pop(t,q0,0.28);x.save();x.translate(90+j*370,450);x.scale(p,p);rr(0,0,340,70,35,j===2?AMA:'#16204a',j===2?null:'#33437f',2);x.restore();tx(s2,90+j*370+170,495,{size:26,f:'Grot',w:600,col:j===2?TINTA:BLANCO,align:'center',al:p})})}
   x.restore();capt(t,i)},
  conclusion(t,e,i){bg(AMA);const tEs=at(i,/^estándar/),tTo=at(i,/^todos/),tC=at(i,/^crecimiento/);
   tx('Por eso',90,110,{size:30,f:'Grot',w:600,col:TINTA,al:E((t-e.a)/0.25)});
