@@ -1,0 +1,28 @@
+{
+ "hook_nodos": [
+  "app",
+  "web",
+  "CRM",
+  "medios",
+  "audiencias"
+ ],
+ "lados": [
+  "MEDICIÓN",
+  "NEGOCIO"
+ ],
+ "evid_nodos": [
+  "eventos",
+  "atribución",
+  "grupo de control",
+  "activación"
+ ],
+ "evid_ok": "medido",
+ "evid_stack": "MMP · eventos · grupos de control · APIs",
+ "chips": [
+  "Apps",
+  "Web",
+  "CRM",
+  "Medios"
+ ],
+ "chip_meta": "Cencosud"
+}
