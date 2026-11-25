@@ -84,6 +84,9 @@ def datos(V, cuts, dur_voz, extra, pal=None):
                 t.append([round(g[0][0] + OFF, 3), round(g[-1][1] + OFF, 3)]); k += c
             d['subt'] = t
         D['escenas'].append(d)
+    if pal:   # palabra a palabra, para subtítulos y golpes de tipografía (plantilla v2)
+        D['words'] = [[w, round(a + OFF, 3), round(b + OFF, 3), i] for i, e in enumerate(esc)
+                      for w, (a, b) in zip(str(e.get('locucion', '')).replace('—', ' ').split(), pal[i])]
     D.update(extra)
     if len(D['cita']) > 170: D['cita'] = D['cita'][:167].rsplit(' ', 1)[0] + '…'
     return D, DUR
@@ -180,7 +183,9 @@ def main():
         cuts = cortes(wav, V['guion']['escenas'])
     D, DUR = datos(V, cuts, dur, extra, pal)
     open(os.path.join(tmp, 'data.js'), 'w').write('window.D=' + json.dumps(D, ensure_ascii=False) + ';')
-    shutil.copy(os.path.join(TALLER, 'plantilla.html'), tmp)
+    v1 = '--v1' in sys.argv or not pal                     # v2 necesita tiempos por palabra
+    shutil.copy(os.path.join(TALLER, 'plantilla.html' if v1 else 'plantilla-v2.html'), os.path.join(tmp, 'plantilla.html'))
+    if not v1: shutil.copytree(os.path.join(TALLER, 'fuentes'), os.path.join(tmp, 'fuentes'))
     asyncio.run(capturas(V, tmp)); asyncio.run(recuadro_pdf(V, tmp))
     if '--solo-cuadros' in sys.argv:
         print(tmp); return
