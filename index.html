@@ -416,6 +416,66 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
 .fx-k div{font-size:13px;color:var(--muted)}
 .fx-k strong{display:block;font-family:var(--f-display);font-size:30px;color:var(--ink);font-variant-numeric:tabular-nums}
 @media (max-width:920px){.pr{grid-template-columns:minmax(0,1fr)}.fx-steps{grid-template-columns:minmax(0,1fr);gap:18px}.fx-steps::before{left:14px;right:auto;top:14px;bottom:14px;width:1px;height:auto}.fx-steps li{display:grid;grid-template-columns:29px minmax(0,1fr);column-gap:14px}.fx-steps b{margin-top:4px}.fx-steps li>span:not(.fx-i){grid-column:2}.fx-out{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* v4 */
+.ficha{align-items:start}
+.ficha .spec{margin-top:28px}
+#videoSec .video{display:block;margin-bottom:0}
+#videoSec .player{max-width:100%}
+#videoSec .vnote{margin:10px 0 14px}
+.sbdet>summary{font-size:15px}
+.sbdet .sb{border:0;margin:0 0 6px}
+.nec{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.nec li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:4px 12px;padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.nec .ck{grid-row:span 3;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.nec .ck.ok{background:var(--ok-soft);color:var(--ok)} .nec .ck.mid{background:var(--warn-soft);color:var(--warn)} .nec .ck.gap{background:var(--gap-soft);color:var(--gap)}
+.nec b{font-family:var(--f-display);font-size:16.5px;line-height:1.3}
+.nec .nt{font-size:13.5px;color:var(--muted)}
+.nec .cs{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.nec .cs button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer}
+.nec .cs button:hover{border-color:var(--ink)}
+.hero-chat{background:var(--ink);color:var(--bg);border-radius:16px;padding:32px;margin-block:8px 52px}
+.hc-h h2{font-size:clamp(26px,3.4vw,38px);color:var(--bg)}
+.hc-h p{margin:6px 0 20px;font-size:16px;opacity:.75}
+.hero-chat .chat{color:var(--ink);position:static;max-height:none;height:auto;min-height:0;border:0;border-radius:12px}
+.hero-chat .chat-h{display:none}
+.hero-chat .log{min-height:140px;max-height:420px}
+.hero-chat .ask input{font-size:16px;padding:14px 16px}
+.port{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;margin-bottom:12px}
+.fl{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.fl-cols{display:grid;grid-template-columns:1.1fr .8fr 1.15fr 1.15fr 1.2fr;gap:22px;align-items:stretch;position:relative}
+.fl-col{display:flex;flex-direction:column;position:relative;min-width:0}
+.fl-col+.fl-col::before{content:"";position:absolute;left:-22px;width:22px;top:50%;border-top:1px solid var(--muted);opacity:.55}
+.fl-n{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;color:var(--muted);padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.fl-c{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg);margin:auto 0}
+.fl-c.sm{padding:10px 12px;margin:0}
+.fl-stack{display:flex;flex-direction:column;gap:8px;margin:auto 0}
+.fl-t{display:flex;align-items:center;gap:8px}
+.fl-t svg,.fl-pill svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;color:var(--muted)}
+.fl-c b{font-family:var(--f-display);font-size:15.5px;line-height:1.2}
+.fl-c span{display:block;font-size:13px;color:var(--muted);line-height:1.35;margin-top:4px}
+.fl-c .fl-sub{font-size:12px;opacity:.8}
+.fl-pill{margin:auto 0;border:1px solid var(--line);border-radius:999px;padding:12px 16px;text-align:center;background:var(--bg)}
+.fl-pill svg{display:block;margin:0 auto 4px;color:var(--ok)}
+.fl-pill b{display:block;font-family:var(--f-display);font-size:15px}
+.fl-pill span{display:block;font-size:12px;color:var(--muted)}
+.fl-agent{border:1.5px solid var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--bg));padding:18px}
+.fl-agent b{font-size:22px}
+.fl-agent i{display:block;font-style:normal;color:var(--ok);font-size:13px;margin:2px 0 8px}
+.fl-agent span{color:var(--ink);opacity:.8}
+.fl-st{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.35}
+.fl-st b{color:var(--ink);font-family:var(--f-body);font-size:13px;margin-right:4px}
+.fl-st em{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.fl-st em.ok{background:var(--ok)} .fl-st em.mid{background:var(--warn)}
+.fl-out{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:26px}
+.fl-out div{background:var(--bg);padding:14px 16px}
+.fl-out b{display:block;font-size:15px}
+.fl-out span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.fl-k{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap}
+.fl-k div{font-size:13px;color:var(--muted)}
+.fl-k strong{display:block;font-family:var(--f-display);font-size:30px;color:var(--ink)}
+@media (max-width:980px){.fl-cols{grid-template-columns:minmax(0,1fr);gap:18px}.fl-col+.fl-col::before{display:none}.fl-out{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.nec{grid-template-columns:minmax(0,1fr)}.hero-chat{padding:20px;border-radius:12px}}
 </style>
 
 <div class="wrap">
@@ -447,7 +507,6 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
     <section id="videoSec">
       <div class="sec-h"><h2 id="vidTit">Paul en 45 segundos</h2><span class="label" id="vidLbl"></span></div>
       <div class="video">
-        <div>
           <div class="player">
             <div class="screen" id="screen" aria-label="Video">
               <span class="ai-tag">Generado por el sistema de Paul · CV Vivo</span>
@@ -460,10 +519,19 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
               <span class="t" id="tm"></span>
             </div>
           </div>
-          <p class="vnote" id="vnote">Vista previa del guion aprobado. El video con la voz de Paul se publica aquí cuando esté listo.</p>
-        </div>
-        <ol class="sb" id="sb" aria-label="Guion por escenas"></ol>
+        <p class="vnote" id="vnote">Vista previa del guion aprobado. El video con la voz de Paul se publica aquí cuando esté listo.</p>
+        <details class="det sbdet"><summary>Ver el guion por escena</summary><ol class="sb" id="sb" aria-label="Guion por escenas"></ol></details>
       </div>
+    </section>
+
+    <section id="necSec">
+      <div class="sec-h"><h2>Lo que necesitan y dónde ya lo hice</h2><span class="label" id="necLbl"></span></div>
+      <ul class="nec" id="nec"></ul>
+    </section>
+
+    <section>
+      <div class="sec-h"><h2>Casos</h2><span class="label">ordenados por ajuste</span></div>
+      <div class="casos" id="casos"></div>
     </section>
 
     <section id="expSec">
@@ -471,23 +539,8 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
       <div id="expBox"><ol class="exp" id="exp"></ol></div>
     </section>
 
-    <section>
-      <div class="sec-h"><h2>Casos relevantes para este cargo</h2><span class="label">ordenados por ajuste</span></div>
-      <div class="casos" id="casos"></div>
-    </section>
-
-    <section id="porqueSec">
-      <div class="sec-h"><h2>Por qué yo</h2></div>
-      <div class="razones" id="razones"></div>
-      <div id="demandaSec" class="dem">
-        <h3 id="demTit"></h3><p class="dem-n">Hipótesis desde fuera, a validar con el equipo.</p>
-        <div class="funnel" id="funnel"></div>
-      </div>
-    </section>
-
-    <section id="chatSec">
-      <div class="sec-h"><h2>Pregúntale a este CV</h2><span class="label">responde solo con mi evidencia</span></div>
-      <div class="pr">
+    <section id="chatSec" class="hero-chat">
+      <div class="hc-h"><h2>Pregúntale a este CV</h2><p>Una IA que responde solo con la evidencia de Paul. Si algo no está, lo dice.</p></div>
       <aside class="chat" aria-label="Chat con el CV">
         <div class="chat-h"><h2>Pregúntale a este CV</h2><p>Responde solo con la evidencia de Paul. Si no la hay, lo dice.</p></div>
         <div class="log" id="log" aria-live="polite"></div>
@@ -497,9 +550,10 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
           <button type="submit">Enviar</button>
         </form>
       </aside>
-        <div id="brief" class="pr-brief">
-          <h3>Pruébame con un brief</h3>
-          <p class="pr-n">Cuéntame un desafío en una o dos frases y te muestro cómo lo armaría.</p>
+    </section>
+
+    <section id="brief">
+      <div class="sec-h"><h2>Pruébame con un brief</h2><span class="label">te muestro cómo lo armaría</span></div>
       <div class="brief">
         <form class="brief-in" id="briefForm">
           <label class="label" for="briefInput">Tu brief, en una o dos frases</label>
@@ -509,16 +563,11 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
         </form>
         <div class="plan" id="plan" aria-live="polite"></div>
       </div>
-        </div>
-      </div>
     </section>
 
     <section id="portSec">
       <div class="sec-h"><h2>Portafolio y perfil completo</h2></div>
       <a class="port" id="portLink" target="_blank" rel="noopener"><span><b>Portafolio Martech</b><span>Seis casos de martech, growth analytics e IA, con el detalle de cada proyecto.</span></span><i>Abrir</i></a>
-      <details class="det"><summary>Lo que pide el cargo y dónde está la evidencia <span class="label" id="matLbl"></span></summary>
-        <div class="tbl"><table><thead><tr><th>Requisito de la ficha</th><th>Evidencia</th><th>Ajuste</th></tr></thead><tbody id="matriz"></tbody></table></div>
-      </details>
       <details class="det" id="perfilSec"><summary>Habilidades, formación y referencias</summary>
           <div class="perfil">
             <div class="pcol"><h3 class="label">Habilidades</h3><dl class="skills" id="skills"></dl></div>
@@ -528,6 +577,7 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
           </div>
           <div id="refsBox"><h3 class="label">Referencias</h3><div class="refs" id="refs"></div></div>
       </details>
+      <div hidden><span id="matLbl"></span><table><tbody id="matriz"></tbody></table><div id="razones"></div><div id="demandaSec"><h3 id="demTit"></h3><div id="funnel"></div></div></div>
     </section>
 
     <section class="callTop">
@@ -543,22 +593,32 @@ details.prompt pre{margin:0;padding:0 16px 16px;font-family:var(--f-mono);font-s
 
     <section id="sistemaSec">
       <div class="sec-h"><h2>Cómo se armó esta página</h2><span class="label">mi proyecto de automatización</span></div>
-      <div class="fx">
-        <p class="fx-intro">Un stack tecnológico propio conecta correo, calendario, almacenamiento en la nube, un sitio web, síntesis de voz y un agente de IA. Yo apruebo cada pieza antes de que se publique.</p>
-        <ol class="fx-steps">
-          <li><span class="fx-i">1</span><b id="fxEmp">La vacante</b><span id="fxCargo">Link de la oferta</span></li>
-          <li><span class="fx-i">2</span><b>Lectura</b><span>Requisitos del cargo y evidencia real: casos y cifras</span></li>
-          <li><span class="fx-i">3</span><b>Armado con IA</b><span>CV, carta, guion y esta página, desde mis datos</span></li>
-          <li class="fx-h"><span class="fx-i">4</span><b>Mi aprobación</b><span>Reviso y corrijo cada pieza en un panel</span></li>
-          <li><span class="fx-i">5</span><b>Publicación</b><span>Voz, montaje del video y PDF con QR</span></li>
-        </ol>
-        <div class="fx-out">
+      <div class="fl">
+        <div class="fl-cols">
+          <div class="fl-col"><div class="fl-n">01 Entrada</div>
+            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></svg><b id="fxEmp">La vacante</b></div><span id="fxCargo">Link de la oferta</span><span class="fl-sub">Pego el link de la oferta</span></div></div>
+          <div class="fl-col fl-mid"><div class="fl-n">02 Trigger</div>
+            <div class="fl-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>Orquestador</b><span>arranca el flujo</span></div></div>
+          <div class="fl-col"><div class="fl-n">03 Lectura</div>
+            <div class="fl-stack">
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><b>Requisitos</b></div><span>Qué pide el cargo</span></div>
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><b>Evidencia</b></div><span>Casos y cifras reales</span></div>
+              <div class="fl-c sm"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h16M4 15h16M9 4v16M15 4v16"/></svg><b>Guion</b></div><span>Video de 1 minuto</span></div>
+            </div></div>
+          <div class="fl-col fl-mid"><div class="fl-n">04 Armado</div>
+            <div class="fl-c fl-agent"><b>Agente de IA</b><i>con mis datos y plantillas</i><span>Arma el CV, la carta, el video y esta página. Propone; no publica.</span></div></div>
+          <div class="fl-col"><div class="fl-n">05 Veredicto</div>
+            <div class="fl-c"><div class="fl-t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><b>Mi aprobación</b></div>
+              <p class="fl-st"><em class="ok"></em><b>Aprobado</b> Se publica y salen los PDF</p>
+              <p class="fl-st"><em class="mid"></em><b>Corregir</b> Vuelve al borrador con mis cambios</p></div></div>
+        </div>
+        <div class="fl-out">
           <div><b>CV y carta</b><span>PDF con QR a esta página</span></div>
           <div><b>Video de 1 minuto</b><span>Con mi voz, montado al ritmo</span></div>
           <div><b>Chat con evidencia</b><span>Responde solo con lo que hice</span></div>
           <div><b>Agenda</b><span>Horarios libres y videollamada</span></div>
         </div>
-        <div class="fx-k"><div><strong>6</strong>servicios conectados</div><div><strong>1</strong>aprobación humana</div><div><strong>20</strong>minutos para agendar</div></div>
+        <div class="fl-k"><div><strong>6</strong>servicios conectados</div><div><strong>1</strong>aprobación humana</div><div><strong>20</strong>minutos para agendar</div></div>
       </div>
     </section>
     <p class="priv">Esta página registra que esta versión fue abierta, qué preguntas se hicieron y si se agendó una llamada. Solo guarda tu nombre y correo si agendas, para enviarte la invitación. No guarda tu dirección IP. Las respuestas del chat y del brief las genera una IA solo a partir de la evidencia que Paul cargó para este cargo.</p>
@@ -625,6 +685,16 @@ window.CVV_INIT = function(){
     tr.append(td, tdc); $('#matriz').appendChild(tr);
   });
 
+
+  (V.matriz || []).forEach(m => {
+    const li = el('li'), k = /cumple/i.test(m.ajuste) ? 'ok' : cls(m.ajuste);
+    li.appendChild(el('span', 'ck ' + k, k === 'ok' ? '✓' : k === 'mid' ? '~' : '·'));
+    li.appendChild(el('b', null, m.requisito));
+    if (m.nota) li.appendChild(el('span', 'nt', m.nota)); else li.appendChild(el('span', 'nt', m.ajuste));
+    const cs = el('div', 'cs'); (m.evidencia || []).forEach(id => { const b = el('button', null, nombre(id)); b.type = 'button'; b.onclick = () => flash(id); cs.appendChild(b); });
+    li.appendChild(cs); $('#nec').appendChild(li);
+  });
+  { const n = (V.matriz || []).length, f = (V.matriz || []).filter(m => /cumple|fuerte|supera/i.test(m.ajuste)).length; $('#necLbl').textContent = f + ' de ' + n + ' con evidencia directa'; }
   // ---------- perfil completo ----------
   const P = V.perfil_completo || {};
   (P.habilidades || []).forEach(h => $('#skills').append(el('dt', null, h.grupo), el('dd', null, (h.items || []).join(' · '))));
